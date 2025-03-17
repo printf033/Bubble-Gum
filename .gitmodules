@@ -1,0 +1,3 @@
+[submodule "mylog"]
+	path = mylog
+	url = https://github.com/printf033/mylog.git

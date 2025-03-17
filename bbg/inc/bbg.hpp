@@ -1,0 +1,7 @@
+namespace bbg
+{
+    class BbG
+    {
+        
+    };
+}
