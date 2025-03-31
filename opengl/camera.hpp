@@ -62,6 +62,7 @@ public:
     {
         yaw_ += xoffset * mouseSensitivity_;
         pitch_ += yoffset * mouseSensitivity_;
+        pitch_ = glm::clamp(pitch_, -89.0f, 89.0f);
         updateCameraVectors();
     }
     void processMouseScroll(float yoffset)

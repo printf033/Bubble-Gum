@@ -29,7 +29,7 @@ public:
         {
             currentTime_ += deltaTime * pAnimation_->getTicksPerSecond();
             currentTime_ = fmod(currentTime_, pAnimation_->getDuration());
-            calculateBoneTransform(&pAnimation_->getRootNode(), pAnimation_->globalInverseTransform_);
+            //calculateBoneTransform(&pAnimation_->getRootNode(), pAnimation_->globalInverseTransform_);
         }
     }
     std::vector<glm::mat4> getFinalBoneMatrices() { return finalBoneMatrices_; }

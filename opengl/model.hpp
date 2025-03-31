@@ -135,10 +135,8 @@ private:
             for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
                 totalWeight += vertex.weights[i];
             if (totalWeight > 0.0f)
-            {
                 for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
                     vertex.weights[i] /= totalWeight;
-            }
         }
         return vertices;
     }
@@ -147,10 +145,8 @@ private:
         std::vector<unsigned int> indices;
         indices.reserve(paiMesh->mNumFaces * 3);
         for (unsigned int i = 0; i < paiMesh->mNumFaces; ++i)
-        {
             for (unsigned int j = 0; j < paiMesh->mFaces[i].mNumIndices; ++j)
                 indices.push_back(paiMesh->mFaces[i].mIndices[j]);
-        }
         return indices;
     }
     std::vector<Texture> processTextures(aiMesh *paiMesh, const aiScene *paiScene)
@@ -174,14 +170,12 @@ private:
             paiMaterial->GetTexture(paiTextureType, i, &path);
             bool skip = false;
             for (unsigned int j = 0; j < texturesLoaded_.size(); ++j)
-            {
                 if (std::strcmp(texturesLoaded_[j].path.c_str(), path.C_Str()) == 0)
                 {
                     textures.push_back(texturesLoaded_[j]);
                     skip = true;
                     break;
                 }
-            }
             if (!skip)
             {
                 Texture texture;
