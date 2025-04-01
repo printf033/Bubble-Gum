@@ -1,0 +1,16 @@
+2025-04-01T16:17:34.055167+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > Armature
+2025-04-01T16:17:34.055287+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 1
+2025-04-01T16:17:34.055295+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 2
+2025-04-01T16:17:34.055301+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 3
+2025-04-01T16:17:34.055305+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 3_end
+2025-04-01T16:17:34.055314+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 3_end_end
+2025-04-01T16:17:34.055320+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair1 3_end_end_end
+2025-04-01T16:17:34.055325+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 1
+2025-04-01T16:17:34.055329+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 2
+2025-04-01T16:17:34.055340+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 3
+2025-04-01T16:17:34.055344+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 3_end
+2025-04-01T16:17:34.055349+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 3_end_end
+2025-04-01T16:17:34.055353+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BangHair2 3_end_end_end
+2025-04-01T16:17:34.055358+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BowDown1
+2025-04-01T16:17:34.055363+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BowDown2
+2025-04-01T16:17:34.055367+08:00 [DEBUG] [9670]animation.hpp:90:readMissingBones > BowDown2_end
