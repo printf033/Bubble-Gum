@@ -68,7 +68,7 @@ public:
     void processMouseScroll(float yoffset)
     {
         zoom_ -= yoffset;
-        zoom_ = glm::clamp(zoom_, 0.1f, 90.0f);
+        zoom_ = glm::clamp(zoom_, -10.0f, 100.0f);
     }
     float getZoom() const { return zoom_; }
 

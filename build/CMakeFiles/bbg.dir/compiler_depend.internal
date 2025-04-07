@@ -1775,9 +1775,9 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o
  /home/aaa/code/myproj/Bubble-Gum/mylog/inc/Timestamp.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/animation.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/animator.hpp
- /home/aaa/code/myproj/Bubble-Gum/opengl/bone.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/camera.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/converter.hpp
+ /home/aaa/code/myproj/Bubble-Gum/opengl/keyframe.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/mesh.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/model.hpp
  /home/aaa/code/myproj/Bubble-Gum/opengl/shader.hpp

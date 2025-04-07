@@ -23,11 +23,8 @@ class Model
 {
     std::vector<Mesh> meshes_;
     std::vector<Texture> texturesLoaded_;
-
-public:
     std::filesystem::path path_;
     std::unordered_map<std::string, BoneData> boneLoaded_;
-    int boneCount_ = 0;
 
 public:
     Model(std::filesystem::path &&path)
@@ -55,14 +52,17 @@ public:
         for (auto &mesh : meshes_)
             mesh.draw(shader);
     }
+    std::filesystem::path getPath() const { return path_; }
+    std::unordered_map<std::string, BoneData> &getBoneLoaded() { return boneLoaded_; }
 
 private:
     void processNode(aiNode *paiNode, const aiScene *paiScene)
     {
+        assert(paiNode != nullptr);
+        assert(paiScene != nullptr);
         for (unsigned int i = 0; i < paiNode->mNumMeshes; ++i)
         {
             aiMesh *paiMesh = paiScene->mMeshes[paiNode->mMeshes[i]];
-            assert(paiMesh != nullptr);
             meshes_.push_back(processMesh(paiMesh, paiScene));
         }
         for (unsigned int i = 0; i < paiNode->mNumChildren; ++i)
@@ -70,6 +70,8 @@ private:
     }
     Mesh processMesh(aiMesh *paiMesh, const aiScene *paiScene)
     {
+        assert(paiMesh != nullptr);
+        assert(paiScene != nullptr);
         std::vector<Vertex> vertices = processVertices(paiMesh);
         std::vector<unsigned int> indices = processIndices(paiMesh);
         std::vector<Texture> textures = processTextures(paiMesh, paiScene);
@@ -77,6 +79,7 @@ private:
     }
     std::vector<Vertex> processVertices(aiMesh *paiMesh)
     {
+        assert(paiMesh != nullptr);
         std::vector<Vertex> vertices;
         vertices.resize(paiMesh->mNumVertices);
         for (unsigned int i = 0; i < paiMesh->mNumVertices; ++i)
@@ -106,42 +109,53 @@ private:
             for (int j = 0; j < MAX_BONE_INFLUENCE; ++j)
                 vertices[i].boneIDs[j] = -1;
         }
-        for (int i = 0; i < paiMesh->mNumBones; ++i)
+        for (unsigned int i = 0; i < paiMesh->mNumBones; ++i)
         {
-            std::string boneName = paiMesh->mBones[i]->mName.C_Str();
-            if (boneLoaded_.find(boneName) == boneLoaded_.end())
-                boneLoaded_[boneName] = BoneData{boneCount_++,
+            auto curBone = paiMesh->mBones[i];
+            std::string boneName(curBone->mName.C_Str());
+            if (!boneLoaded_.contains(boneName))
+                boneLoaded_[boneName] = BoneData{static_cast<int>(boneLoaded_.size()),
                                                  Converter::convertMatrixToGLMFormat(
-                                                     paiMesh->mBones[i]->mOffsetMatrix)};
-            for (int j = 0; j < paiMesh->mBones[i]->mNumWeights; ++j)
+                                                     curBone->mOffsetMatrix)};
+            for (unsigned int j = 0; j < curBone->mNumWeights; ++j)
             {
-                unsigned int vertexId = paiMesh->mBones[i]->mWeights[j].mVertexId;
-                float weight = paiMesh->mBones[i]->mWeights[j].mWeight;
+                auto curWeight = curBone->mWeights[j];
+                auto vertexId = curWeight.mVertexId;
                 for (int k = 0; k < MAX_BONE_INFLUENCE; ++k)
                 {
                     if (vertices[vertexId].boneIDs[k] == -1)
                     {
                         vertices[vertexId].boneIDs[k] = boneLoaded_[boneName].id;
-                        vertices[vertexId].weights[k] = weight;
+                        vertices[vertexId].weights[k] = curWeight.mWeight;
                         break;
                     }
                 }
             }
         }
-        // 归一化权重
-        for (auto &vertex : vertices)
+        for (auto &vertex : vertices) // 归一化权重（有无必要
         {
             float totalWeight = 0.0f;
             for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
-                totalWeight += vertex.weights[i];
+            {
+                if (vertex.boneIDs[i] != -1)
+                    totalWeight += vertex.weights[i];
+                else
+                    break;
+            }
             if (totalWeight > 0.0f)
                 for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
-                    vertex.weights[i] /= totalWeight;
+                {
+                    if (vertex.boneIDs[i] != -1)
+                        vertex.weights[i] /= totalWeight;
+                    else
+                        break;
+                }
         }
         return vertices;
     }
     std::vector<unsigned int> processIndices(aiMesh *paiMesh)
     {
+        assert(paiMesh != nullptr);
         std::vector<unsigned int> indices;
         indices.reserve(paiMesh->mNumFaces * 3);
         for (unsigned int i = 0; i < paiMesh->mNumFaces; ++i)
@@ -151,9 +165,10 @@ private:
     }
     std::vector<Texture> processTextures(aiMesh *paiMesh, const aiScene *paiScene)
     {
+        assert(paiMesh != nullptr);
+        assert(paiScene != nullptr);
         std::vector<Texture> textures;
         aiMaterial *paiMaterial = paiScene->mMaterials[paiMesh->mMaterialIndex];
-        assert(paiMaterial != nullptr);
         loadMaterialTextures(textures, paiMaterial, aiTextureType_DIFFUSE, "texture_diffuse");
         loadMaterialTextures(textures, paiMaterial, aiTextureType_SPECULAR, "texture_specular");
         loadMaterialTextures(textures, paiMaterial, aiTextureType_HEIGHT, "texture_normal");
@@ -162,6 +177,7 @@ private:
     }
     void loadMaterialTextures(std::vector<Texture> &textures, aiMaterial *paiMaterial, aiTextureType paiTextureType, const std::string &typeName)
     {
+        assert(paiMaterial != nullptr);
         unsigned int num = paiMaterial->GetTextureCount(paiTextureType);
         textures.reserve(textures.size() + num);
         for (unsigned int i = 0; i < num; ++i)
@@ -189,6 +205,7 @@ private:
     }
     unsigned int TextureFromFile(const char *filename)
     {
+        assert(filename != nullptr);
         std::string path(path_.parent_path() / filename);
         unsigned int textureID;
         glCreateTextures(GL_TEXTURE_2D, 1, &textureID);

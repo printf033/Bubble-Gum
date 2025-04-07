@@ -1765,9 +1765,9 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/opengl/ma
   /home/aaa/code/myproj/Bubble-Gum/mylog/inc/Timestamp.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/animation.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/animator.hpp \
-  /home/aaa/code/myproj/Bubble-Gum/opengl/bone.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/camera.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/converter.hpp \
+  /home/aaa/code/myproj/Bubble-Gum/opengl/keyframe.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/mesh.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/model.hpp \
   /home/aaa/code/myproj/Bubble-Gum/opengl/shader.hpp \
@@ -2483,8 +2483,6 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/opengl/ma
 
 /usr/include/c++/14/ext/string_conversions.h:
 
-/usr/include/c++/14/ext/concurrence.h:
-
 /usr/include/c++/14/ext/atomicity.h:
 
 /usr/include/c++/14/ext/alloc_traits.h:
@@ -2554,6 +2552,8 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/opengl/ma
 /usr/include/c++/14/bits/unique_ptr.h:
 
 /usr/include/c++/14/debug/assertions.h:
+
+/usr/include/c++/14/bits/unique_lock.h:
 
 /usr/include/glm/detail/type_vec4.inl:
 
@@ -2743,6 +2743,10 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/opengl/ma
 
 /usr/include/c++/14/bits/node_handle.h:
 
+/usr/include/c++/14/ext/concurrence.h:
+
+/home/aaa/code/myproj/Bubble-Gum/opengl/keyframe.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/glm/detail/type_mat4x4.hpp:
@@ -2782,10 +2786,6 @@ CMakeFiles/bbg.dir/opengl/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/opengl/ma
 /usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/c++/14/bits/unique_lock.h:
-
-/home/aaa/code/myproj/Bubble-Gum/opengl/bone.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/dlfcn.h:
 

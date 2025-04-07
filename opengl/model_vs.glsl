@@ -10,7 +10,7 @@ layout(location = 5) in ivec4 boneIds;
 layout(location = 6) in vec4 weights;
 uniform mat4 projection;
 uniform mat4 view;
-uniform mat4 finalBonesMatrices[MAX_BONES];
+uniform mat4 finalTransforms[MAX_BONES];
 out vec2 TexCoords;
 void main()
 {
@@ -21,9 +21,9 @@ void main()
             continue;
         if(boneIds[i] >= MAX_BONES) 
             continue;
-        vec4 localPosition = finalBonesMatrices[boneIds[i]] * vec4(pos,1.0f);
+        vec4 localPosition = finalTransforms[boneIds[i]] * vec4(pos,1.0f);
         totalPosition += localPosition * weights[i];
-        vec3 localNormal = mat3(finalBonesMatrices[boneIds[i]]) * norm;
+        vec3 localNormal = mat3(finalTransforms[boneIds[i]]) * norm;
     }	
     gl_Position =  projection * view * totalPosition;
 	TexCoords = tex;

@@ -19,8 +19,8 @@ Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
-float deltaTime = 0.0f;
-float lastFrame = 0.0f;
+double deltaTime = 0.0;
+double lastTime = 0.0;
 
 void processInput(GLFWwindow *window)
 {
@@ -38,23 +38,18 @@ void processInput(GLFWwindow *window)
 
 int main()
 {
-	mylog::FileManager::_setBasename("log");
+	mylog::LogMessage::_setTerminalColorful();
+	// mylog::FileManager::_setBasename("log");
 	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
-	mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
-	mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
+	// mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
+	// mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true); // debug
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // debug
 	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "BBG", NULL, NULL);
-	if (window == nullptr)
-	{
-		std::cerr << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height)
 								   { glViewport(0, 0, width, height); });
@@ -76,9 +71,8 @@ int main()
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		std::cerr << "Failed to initialize GLAD" << std::endl;
 		glfwTerminate();
-		return -1;
+		LOG_FATAL << "Failed to initialize GLAD";
 	}
 	//////////////////////////////////////////////////////////////////// debug
 	GLint flags;
@@ -86,18 +80,10 @@ int main()
 	if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
 	{
 		glEnable(GL_DEBUG_OUTPUT);
-		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(
-			[](GLenum source, GLenum type, GLuint id, GLenum severity,
-			   GLsizei length, const GLchar *message, const void *userParam)
+			[](GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
 			{
-				// 忽略一些不重要的错误/警告代码
-				if (id == 131169 || id == 131185 || id == 131218 || id == 131204)
-					return;
-
-				std::cout << "---------------" << std::endl;
 				std::cout << "Debug message (" << id << "): " << message << std::endl;
-
 				switch (source)
 				{
 				case GL_DEBUG_SOURCE_API:
@@ -120,7 +106,6 @@ int main()
 					break;
 				}
 				std::cout << std::endl;
-
 				switch (type)
 				{
 				case GL_DEBUG_TYPE_ERROR:
@@ -152,7 +137,6 @@ int main()
 					break;
 				}
 				std::cout << std::endl;
-
 				switch (severity)
 				{
 				case GL_DEBUG_SEVERITY_HIGH:
@@ -179,14 +163,14 @@ int main()
 	Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
 				  std::filesystem::current_path() / "../opengl/model_fs.glsl");
 	Model model(std::filesystem::current_path() / "../resrc/obj/mita/mita.fbx");
-	Animation animation(&model);
-	Animator animator(&animation);
+	Animator animator(model);
+	animator.setCurAnimation(std::string("Take 001")); ////////////////////////////////改
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	while (!glfwWindowShouldClose(window))
 	{
-		float currentFrame = glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
+		double curTime = glfwGetTime();
+		deltaTime = curTime - lastTime;
+		lastTime = curTime;
 		processInput(window);
 		animator.updateAnimation(deltaTime);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -196,9 +180,9 @@ int main()
 		shader.setMat4("projection", projection);
 		glm::mat4 view = camera.getViewMatrix();
 		shader.setMat4("view", view);
-		auto finalBonesMatrices = animator.getFinalBoneMatrices();
-		for (int i = 0; i < finalBonesMatrices.size(); ++i)
-			shader.setMat4("finalBonesMatrices[" + std::to_string(i) + "]", finalBonesMatrices[i]);
+		auto finalTransforms = animator.getFinalTransforms();
+		for (int i = 0; i < finalTransforms.size(); ++i)
+			shader.setMat4("finalTransforms[" + std::to_string(i) + "]", finalTransforms[i]);
 		model.draw(shader);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -206,4 +190,3 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-
