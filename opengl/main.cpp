@@ -159,35 +159,38 @@ int main()
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 	}
 	//////////////////////////////////////////////////////////////////// debug
-	glEnable(GL_DEPTH_TEST);
-	Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
-				  std::filesystem::current_path() / "../opengl/model_fs.glsl");
-	Model mesh(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
-	Animator animator(mesh);
-	///////////////////////////////////////////////////////////////////////////////////改
-	animator.setCurAnimation(std::string("骨架|Action"));
-	///////////////////////////////////////////////////////////////////////////////////改
-	 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	while (!glfwWindowShouldClose(window))
 	{
-		double curTime = glfwGetTime();
-		deltaTime = curTime - lastTime;
-		lastTime = curTime;
-		processInput(window);
-		animator.updateAnimation(deltaTime);
-		glClearColor(0.0f, 0.5f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		shader.use();
-		// auto model = glm::mat4(1.0f);
-		// shader.setMat4("model", model);
-		auto view = camera.getViewMatrix();
-		shader.setMat4("view", view);
-		auto projection = glm::perspective(glm::radians(camera.getZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		shader.setMat4("projection", projection);
-		mesh.draw(shader);
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		glEnable(GL_DEPTH_TEST);
+		Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
+					  std::filesystem::current_path() / "../opengl/model_fs.glsl");
+		Model mdl(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
+		Animator animator(mdl);
+		///////////////////////////////////////////////////////////////////////////////////改
+		animator.setCurAnimation("骨架|Action");
+		///////////////////////////////////////////////////////////////////////////////////改
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		while (!glfwWindowShouldClose(window))
+		{
+			double curTime = glfwGetTime();
+			deltaTime = curTime - lastTime;
+			lastTime = curTime;
+			processInput(window);
+			animator.updateAnimation(deltaTime);
+			glClearColor(0.0f, 0.5f, 0.0f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			shader.use();
+			// auto model = glm::mat4(1.0f);
+			// shader.setMat4("model", model);
+			auto view = camera.getViewMatrix();
+			shader.setMat4("view", view);
+			auto projection = glm::perspective(glm::radians(camera.getZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+			shader.setMat4("projection", projection);
+			mdl.draw(shader);
+			glfwSwapBuffers(window);
+			glfwPollEvents();
+		}
 	}
+	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
 }

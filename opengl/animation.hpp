@@ -53,7 +53,7 @@ private:
                 model.getBoneLoaded().emplace(boneName,
                                               BoneData{static_cast<int>(model.getBoneLoaded().size()),
                                                        glm::mat4(1.0f) /*推导*/});
-            // /////////////////////////////////////////////////////////////////////////////////////////////////////////本动画所有有关的骨骼
+            // ///////////////////////////////////////////////////////////////////////////////本动画所有有关的骨骼
             // LOG_DEBUG << boneName << "#" << model.getBoneLoaded()[boneName].id << "#\n"
             //           << model.getBoneLoaded()[boneName].offset[0][0] << '#'
             //           << model.getBoneLoaded()[boneName].offset[1][0] << '#'
@@ -71,6 +71,7 @@ private:
             //           << model.getBoneLoaded()[boneName].offset[1][3] << '#'
             //           << model.getBoneLoaded()[boneName].offset[2][3] << '#'
             //           << model.getBoneLoaded()[boneName].offset[3][3] << '#';
+            // ///////////////////////////////////////////////////////////////////////////////本动画所有有关的骨骼
             keyFrames_.emplace(boneName, KeyFrame(curBone));
         }
     }

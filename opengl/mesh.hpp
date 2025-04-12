@@ -35,8 +35,15 @@ class Mesh
     GLuint VAO_, VBO_, EBO_;
 
 public:
-    Mesh(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices, const std::vector<Texture> &textures)
-        : vertices_(vertices), indices_(indices), textures_(textures)
+    Mesh(const std::vector<Vertex> &vertices,
+         const std::vector<unsigned int> &indices,
+         const std::vector<Texture> &textures)
+        : vertices_(vertices),
+          indices_(indices),
+          textures_(textures),
+          VAO_(0),
+          VBO_(0),
+          EBO_(0)
     {
         glGenVertexArrays(1, &VAO_);
         glGenBuffers(1, &VBO_);
@@ -62,11 +69,44 @@ public:
         glEnableVertexAttribArray(6);
         glBindVertexArray(0);
     }
+    Mesh(const Mesh &) = delete;
+    Mesh &operator=(const Mesh &) = delete;
+    Mesh(Mesh &&other)
+        : vertices_(std::move(other.vertices_)),
+          indices_(std::move(other.indices_)),
+          textures_(std::move(other.textures_)),
+          VAO_(other.VAO_),
+          VBO_(other.VBO_),
+          EBO_(other.EBO_)
+    {
+        other.VAO_ = 0;
+        other.VBO_ = 0;
+        other.EBO_ = 0;
+    }
+    Mesh &operator=(Mesh &&other)
+    {
+        if (this != &other)
+        {
+            glDeleteVertexArrays(1, &VAO_);
+            glDeleteBuffers(1, &VBO_);
+            glDeleteBuffers(1, &EBO_);
+            vertices_ = std::move(other.vertices_);
+            indices_ = std::move(other.indices_);
+            textures_ = std::move(other.textures_);
+            VAO_ = other.VAO_;
+            VBO_ = other.VBO_;
+            EBO_ = other.EBO_;
+            other.VAO_ = 0;
+            other.VBO_ = 0;
+            other.EBO_ = 0;
+        }
+        return *this;
+    }
     ~Mesh()
     {
-        // glDeleteBuffers(1, &VBO_);
-        // glDeleteBuffers(1, &EBO_);
-        // glDeleteVertexArrays(1, &VAO_);
+        glDeleteVertexArrays(1, &VAO_);
+        glDeleteBuffers(1, &VBO_);
+        glDeleteBuffers(1, &EBO_);
     }
     void draw(Shader &shader) const
     {
@@ -80,36 +120,6 @@ public:
         glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices_.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         glActiveTexture(GL_TEXTURE0);
-        GLenum error;
-        while ((error = glGetError()) != GL_NO_ERROR)
-        {
-            std::string errorMsg;
-            switch (error)
-            {
-            case GL_INVALID_ENUM:
-                errorMsg = "GL_INVALID_ENUM";
-                break;
-            case GL_INVALID_VALUE:
-                errorMsg = "GL_INVALID_VALUE";
-                break;
-            case GL_INVALID_OPERATION:
-                errorMsg = "GL_INVALID_OPERATION";
-                break;
-            case GL_STACK_OVERFLOW:
-                errorMsg = "GL_STACK_OVERFLOW";
-                break;
-            case GL_STACK_UNDERFLOW:
-                errorMsg = "GL_STACK_UNDERFLOW";
-                break;
-            case GL_OUT_OF_MEMORY:
-                errorMsg = "GL_OUT_OF_MEMORY";
-                break;
-            default:
-                errorMsg = "UNKNOWN";
-                break;
-            }
-            std::cerr << errorMsg << std::endl;
-        }
     }
 };
 

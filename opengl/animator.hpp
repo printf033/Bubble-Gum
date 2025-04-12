@@ -9,7 +9,7 @@
 
 class Animator
 {
-    Model model_;
+    Model &model_;
     std::unordered_map<std::string, Animation> animations_;
     Animation *curAnim_;
     double curTick_;
@@ -42,7 +42,11 @@ public:
         glBufferData(GL_SHADER_STORAGE_BUFFER, finalTransforms_.size() * sizeof(glm::mat4), finalTransforms_.data(), GL_DYNAMIC_DRAW);
         glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, SSBO_);
     }
-    ~Animator() {}
+    ~Animator()
+    {
+        glDeleteBuffers(1, &SSBO_);
+        curAnim_ = nullptr;
+    }
     bool setCurAnimation(const std::string &animName)
     {
         if (!animations_.contains(animName))

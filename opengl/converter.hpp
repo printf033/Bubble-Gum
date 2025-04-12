@@ -9,15 +9,14 @@
 class Converter
 {
 public:
-	static inline glm::mat4 convertMatrixToGLMFormat(const aiMatrix4x4& from)
+	static inline glm::mat4 convertMatrixToGLMFormat(const aiMatrix4x4& src)
 	{
-		glm::mat4 to;
-		//the a,b,c,d in assimp is the row ; the 1,2,3,4 is the column
-		to[0][0] = from.a1; to[1][0] = from.a2; to[2][0] = from.a3; to[3][0] = from.a4;
-		to[0][1] = from.b1; to[1][1] = from.b2; to[2][1] = from.b3; to[3][1] = from.b4;
-		to[0][2] = from.c1; to[1][2] = from.c2; to[2][2] = from.c3; to[3][2] = from.c4;
-		to[0][3] = from.d1; to[1][3] = from.d2; to[2][3] = from.d3; to[3][3] = from.d4;
-		return to;
+		glm::mat4 dst;
+		dst[0][0] = src.a1; dst[1][0] = src.a2; dst[2][0] = src.a3; dst[3][0] = src.a4;
+		dst[0][1] = src.b1; dst[1][1] = src.b2; dst[2][1] = src.b3; dst[3][1] = src.b4;
+		dst[0][2] = src.c1; dst[1][2] = src.c2; dst[2][2] = src.c3; dst[3][2] = src.c4;
+		dst[0][3] = src.d1; dst[1][3] = src.d2; dst[2][3] = src.d3; dst[3][3] = src.d4;
+		return dst;
 	}
 	static inline glm::vec3 getGLMVec(const aiVector3D& vec) 
 	{ 

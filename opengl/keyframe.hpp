@@ -62,7 +62,27 @@ public:
         glm::mat4 translation = interpolatePosition(curTick);
         glm::mat4 rotation = interpolateRotation(curTick);
         glm::mat4 scale = interpolateScaling(curTick);
-        return translation * rotation * scale;
+        glm::mat4 total= translation * rotation * scale;
+        // ///////////////////////////////////////////////////////////////////////////////////
+        // LOG_DEBUG << "模型变换矩阵#\n"
+        //           << total[0][0] << '#'
+        //           << total[1][0] << '#'
+        //           << total[2][0] << '#'
+        //           << total[3][0] << "#\n"
+        //           << total[0][1] << '#'
+        //           << total[1][1] << '#'
+        //           << total[2][1] << '#'
+        //           << total[3][1] << "#\n"
+        //           << total[0][2] << '#'
+        //           << total[1][2] << '#'
+        //           << total[2][2] << '#'
+        //           << total[3][2] << "#\n"
+        //           << total[0][3] << '#'
+        //           << total[1][3] << '#'
+        //           << total[2][3] << '#'
+        //           << total[3][3] << '#';
+        // ///////////////////////////////////////////////////////////////////////////////////
+        return total;
     }
 
 private:
