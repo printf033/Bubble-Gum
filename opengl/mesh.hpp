@@ -22,7 +22,7 @@ struct Vertex
 
 struct Texture
 {
-    unsigned int id;
+    GLuint id;
     std::string type;
     std::string path;
 };
@@ -30,9 +30,9 @@ struct Texture
 class Mesh
 {
     std::vector<Vertex> vertices_;
-    std::vector<unsigned int> indices_;
+    std::vector<GLuint> indices_;
     std::vector<Texture> textures_;
-    unsigned int VAO_, VBO_, EBO_;
+    GLuint VAO_, VBO_, EBO_;
 
 public:
     Mesh(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices, const std::vector<Texture> &textures)
@@ -77,7 +77,7 @@ public:
             glBindTexture(GL_TEXTURE_2D, textures_[i].id);
         }
         glBindVertexArray(VAO_);
-        glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices_.size()), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices_.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         glActiveTexture(GL_TEXTURE0);
         GLenum error;

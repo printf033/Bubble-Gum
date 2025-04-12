@@ -29,10 +29,9 @@ class KeyFrame
     std::vector<KeyPosition> positions_;
     std::vector<KeyRotation> rotations_;
     std::vector<KeyScale> scales_;
-    glm::mat4 curTransform_;
 
 public:
-    KeyFrame(const aiNodeAnim *channel = nullptr) : curTransform_(1.0f)
+    KeyFrame(const aiNodeAnim *channel = nullptr)
     {
         assert(channel != nullptr);
         positions_.reserve(channel->mNumPositionKeys);
@@ -58,13 +57,12 @@ public:
         }
     }
     ~KeyFrame() {}
-    const glm::mat4 &interpolate(double curTick)
+    const glm::mat4 interpolate(double curTick)
     {
         glm::mat4 translation = interpolatePosition(curTick);
         glm::mat4 rotation = interpolateRotation(curTick);
         glm::mat4 scale = interpolateScaling(curTick);
-        curTransform_ = translation * rotation * scale;
-        return curTransform_;
+        return translation * rotation * scale;
     }
 
 private:

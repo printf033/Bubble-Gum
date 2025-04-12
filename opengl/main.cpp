@@ -38,9 +38,9 @@ void processInput(GLFWwindow *window)
 
 int main()
 {
+	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
 	mylog::LogMessage::_setTerminalColorful();
 	// mylog::FileManager::_setBasename("log");
-	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
 	// mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
 	// mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
 
@@ -162,10 +162,12 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 	Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
 				  std::filesystem::current_path() / "../opengl/model_fs.glsl");
-	Model model(std::filesystem::current_path() / "../resrc/obj/mita/mita.fbx");
-	Animator animator(model);
-	animator.setCurAnimation(std::string("Take 001")); ////////////////////////////////改
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	Model mesh(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
+	Animator animator(mesh);
+	///////////////////////////////////////////////////////////////////////////////////改
+	animator.setCurAnimation(std::string("骨架|Action"));
+	///////////////////////////////////////////////////////////////////////////////////改
+	 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	while (!glfwWindowShouldClose(window))
 	{
 		double curTime = glfwGetTime();
@@ -173,17 +175,16 @@ int main()
 		lastTime = curTime;
 		processInput(window);
 		animator.updateAnimation(deltaTime);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 0.5f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shader.use();
-		glm::mat4 projection = glm::perspective(glm::radians(camera.getZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		shader.setMat4("projection", projection);
-		glm::mat4 view = camera.getViewMatrix();
+		// auto model = glm::mat4(1.0f);
+		// shader.setMat4("model", model);
+		auto view = camera.getViewMatrix();
 		shader.setMat4("view", view);
-		auto finalTransforms = animator.getFinalTransforms();
-		for (int i = 0; i < finalTransforms.size(); ++i)
-			shader.setMat4("finalTransforms[" + std::to_string(i) + "]", finalTransforms[i]);
-		model.draw(shader);
+		auto projection = glm::perspective(glm::radians(camera.getZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		shader.setMat4("projection", projection);
+		mesh.draw(shader);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

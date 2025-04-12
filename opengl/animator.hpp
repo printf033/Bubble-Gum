@@ -14,6 +14,7 @@ class Animator
     Animation *curAnim_;
     double curTick_;
     std::vector<glm::mat4> finalTransforms_;
+    GLuint SSBO_;
 
 public:
     Animator(Model &model)
@@ -31,35 +32,51 @@ public:
         {
             auto paiAnimation = paiScene->mAnimations[i];
             animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, paiScene, model_));
+            /////////////////////////////////////////////////////////////////////////////
+            LOG_INFO << paiAnimation->mName.C_Str();
+            /////////////////////////////////////////////////////////////////////////////
         }
+        finalTransforms_.resize(model_.getBoneLoaded().size(), glm::mat4(1.0f));
+        glGenBuffers(1, &SSBO_);
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_);
+        glBufferData(GL_SHADER_STORAGE_BUFFER, finalTransforms_.size() * sizeof(glm::mat4), finalTransforms_.data(), GL_DYNAMIC_DRAW);
+        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, SSBO_);
     }
     ~Animator() {}
     bool setCurAnimation(const std::string &animName)
     {
         if (!animations_.contains(animName))
+        {
+            LOG_ERROR << "Animation not found: " << animName;
             return false;
+        }
         curAnim_ = &animations_.at(animName);
+        LOG_INFO << "Set animation: " << animName
+                 << ", duration: " << curAnim_->getDuration()
+                 << ", ticks/s: " << curAnim_->getTicksPerSecond();
         return true;
     }
     void updateAnimation(double deltaTime)
     {
-        if (curAnim_ == nullptr)
-            return;
+        assert(curAnim_ != nullptr);
         curTick_ += deltaTime * curAnim_->getTicksPerSecond();
         curTick_ = fmod(curTick_, curAnim_->getDuration()); // 循环播放
         calculateFinalTransform(curAnim_->getRootNode(), glm::mat4(1.0f));
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_);
+        glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, finalTransforms_.size() * sizeof(glm::mat4), finalTransforms_.data());
     }
-    std::vector<glm::mat4> getFinalTransforms() { return finalTransforms_; }
 
 private:
     void calculateFinalTransform(const Hierarchy &node, glm::mat4 parentTransform)
     {
-        KeyFrame curBone = curAnim_->getBoneKeyFrame(node.name); // 没有这个骨骼关键帧的话KeyFrame的默认构造assert会拦截
-        // 要保证所有需要的骨骼boneloaded都有
-        glm::mat4 localTransform = parentTransform * curBone.interpolate(curTick_);
-        finalTransforms_[model_.getBoneLoaded()[node.name].id] = localTransform * model_.getBoneLoaded()[node.name].offset;
-        for (int i = 0; i < node.children.size(); ++i)
-            calculateFinalTransform(node.children[i], localTransform);
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if (model_.getBoneLoaded().contains(node.name))
+        {
+            parentTransform *= curAnim_->getBoneKeyFrame(node.name).interpolate(curTick_);
+            finalTransforms_[model_.getBoneLoaded()[node.name].id] = parentTransform * model_.getBoneLoaded()[node.name].offset;
+        }
+        for (const auto &child : node.children)
+            calculateFinalTransform(child, parentTransform);
     }
 };
 
