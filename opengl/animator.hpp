@@ -32,7 +32,7 @@ public:
         {
             auto paiAnimation = paiScene->mAnimations[i];
             animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, paiScene, model_));
-            /////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////报菜名hhh
             LOG_INFO << paiAnimation->mName.C_Str();
             /////////////////////////////////////////////////////////////////////////////
         }
@@ -73,9 +73,11 @@ public:
 private:
     void calculateFinalTransform(const Hierarchy &node, glm::mat4 parentTransform)
     {
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (model_.getBoneLoaded().contains(node.name))
         {
+            // ///////////////////////////////////////////////////////////////////////////////////////////
+            // LOG_DEBUG << "当前节点名称#" << node.name;
+            // ///////////////////////////////////////////////////////////////////////////////////////////
             parentTransform *= curAnim_->getBoneKeyFrame(node.name).interpolate(curTick_);
             finalTransforms_[model_.getBoneLoaded()[node.name].id] = parentTransform * model_.getBoneLoaded()[node.name].offset;
         }

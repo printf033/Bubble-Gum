@@ -29,67 +29,82 @@ class KeyFrame
     std::vector<KeyPosition> positions_;
     std::vector<KeyRotation> rotations_;
     std::vector<KeyScale> scales_;
+    int nextPos_;
+    int nextRot_;
+    int nextScl_;
 
 public:
     KeyFrame(const aiNodeAnim *channel = nullptr)
+        : nextPos_(1),
+          nextRot_(1),
+          nextScl_(1)
     {
         assert(channel != nullptr);
         positions_.reserve(channel->mNumPositionKeys);
         for (unsigned int i = 0; i < channel->mNumPositionKeys; ++i)
         {
-            aiVector3D position = channel->mPositionKeys[i].mValue;
+            aiVector3D pos = channel->mPositionKeys[i].mValue;
             double tickStamp = channel->mPositionKeys[i].mTime;
-            positions_.push_back({Converter::getGLMVec(position), tickStamp});
+            positions_.push_back({Converter::getGLMVec(pos), tickStamp});
+            ///////////////////////////////////////////////////////////////////////////////////
+            LOG_DEBUG << "key#" << i << " pos#\n"
+                      << positions_.back().position[0] << '#'
+                      << positions_.back().position[1] << '#'
+                      << positions_.back().position[2] << '#';
+            ///////////////////////////////////////////////////////////////////////////////////
         }
         rotations_.reserve(channel->mNumRotationKeys);
         for (unsigned int i = 0; i < channel->mNumRotationKeys; ++i)
         {
-            aiQuaternion orientation = channel->mRotationKeys[i].mValue;
+            aiQuaternion ort = channel->mRotationKeys[i].mValue;
             double tickStamp = channel->mRotationKeys[i].mTime;
-            rotations_.push_back({Converter::getGLMQuat(orientation), tickStamp});
+            rotations_.push_back({Converter::getGLMQuat(ort), tickStamp});
         }
         scales_.reserve(channel->mNumScalingKeys);
         for (unsigned int i = 0; i < channel->mNumScalingKeys; ++i)
         {
-            aiVector3D scale = channel->mScalingKeys[i].mValue;
+            aiVector3D scl = channel->mScalingKeys[i].mValue;
             double tickStamp = channel->mScalingKeys[i].mTime;
-            scales_.push_back({Converter::getGLMVec(scale), tickStamp});
+            scales_.push_back({Converter::getGLMVec(scl), tickStamp});
         }
     }
     ~KeyFrame() {}
     const glm::mat4 interpolate(double curTick)
     {
-        glm::mat4 translation = interpolatePosition(curTick);
-        glm::mat4 rotation = interpolateRotation(curTick);
-        glm::mat4 scale = interpolateScaling(curTick);
-        glm::mat4 total= translation * rotation * scale;
-        // ///////////////////////////////////////////////////////////////////////////////////
-        // LOG_DEBUG << "模型变换矩阵#\n"
-        //           << total[0][0] << '#'
-        //           << total[1][0] << '#'
-        //           << total[2][0] << '#'
-        //           << total[3][0] << "#\n"
-        //           << total[0][1] << '#'
-        //           << total[1][1] << '#'
-        //           << total[2][1] << '#'
-        //           << total[3][1] << "#\n"
-        //           << total[0][2] << '#'
-        //           << total[1][2] << '#'
-        //           << total[2][2] << '#'
-        //           << total[3][2] << "#\n"
-        //           << total[0][3] << '#'
-        //           << total[1][3] << '#'
-        //           << total[2][3] << '#'
-        //           << total[3][3] << '#';
-        // ///////////////////////////////////////////////////////////////////////////////////
-        return total;
+        glm::mat4 transformation = glm::mat4(1.0f);
+        if (!scales_.empty())
+            transformation *= interpolateScaling(curTick);
+        if (!rotations_.empty())
+            transformation *= interpolateRotation(curTick);
+        if (!positions_.empty())
+            transformation *= interpolatePosition(curTick);
+        ///////////////////////////////////////////////////////////////////////////////////
+        LOG_DEBUG << "模型变换矩阵#\n"
+                  << transformation[0][0] << '#'
+                  << transformation[1][0] << '#'
+                  << transformation[2][0] << '#'
+                  << transformation[3][0] << "#\n"
+                  << transformation[0][1] << '#'
+                  << transformation[1][1] << '#'
+                  << transformation[2][1] << '#'
+                  << transformation[3][1] << "#\n"
+                  << transformation[0][2] << '#'
+                  << transformation[1][2] << '#'
+                  << transformation[2][2] << '#'
+                  << transformation[3][2] << "#\n"
+                  << transformation[0][3] << '#'
+                  << transformation[1][3] << '#'
+                  << transformation[2][3] << '#'
+                  << transformation[3][3] << '#';
+        ///////////////////////////////////////////////////////////////////////////////////
+        return transformation;
     }
 
 private:
     glm::mat4 interpolatePosition(double curTick)
     {
-        if (1 == positions_.size())
-            return glm::translate(glm::mat4(1.0f), positions_[0].position);
+        if (positions_.empty())
+            return glm::mat4(1.0f);
         int key = getPositionIndex(curTick);
         if (key == positions_.size() - 1)
             return glm::translate(glm::mat4(1.0f), positions_[key].position);
@@ -103,23 +118,25 @@ private:
     }
     glm::mat4 interpolateRotation(double curTick)
     {
-        if (1 == rotations_.size())
-            return glm::toMat4(glm::normalize(rotations_[0].orientation));
+        if (rotations_.empty())
+            return glm::mat4(1.0f);
         int key = getRotationIndex(curTick);
         if (key == rotations_.size() - 1)
             return glm::toMat4(glm::normalize(rotations_[key].orientation));
         double scaleFactor = getScaleFactor(rotations_[key].tickStamp,
                                             rotations_[key + 1].tickStamp,
                                             curTick);
-        glm::quat finalRotation = glm::slerp(rotations_[key].orientation,
-                                             rotations_[key + 1].orientation,
-                                             static_cast<float>(scaleFactor));
+        glm::quat q1 = rotations_[key].orientation;
+        glm::quat q2 = rotations_[key + 1].orientation;
+        if (glm::dot(q1, q2) < 0.0f)
+            q2 = -q2;
+        glm::quat finalRotation = glm::slerp(q1, q2, static_cast<float>(scaleFactor));
         return glm::toMat4(glm::normalize(finalRotation));
     }
     glm::mat4 interpolateScaling(double curTick)
     {
-        if (1 == scales_.size())
-            return glm::scale(glm::mat4(1.0f), scales_[0].scale);
+        if (scales_.empty())
+            return glm::mat4(1.0f);
         int key = getScaleIndex(curTick);
         if (key == scales_.size())
             return glm::scale(glm::mat4(1.0f), scales_[key].scale);
@@ -131,26 +148,35 @@ private:
                                         scaleFactor);
         return glm::scale(glm::mat4(1.0f), finalScale);
     }
-    int getPositionIndex(double curTick) const
+    int getPositionIndex(double curTick)
     {
-        for (unsigned int i = 1; i < positions_.size(); ++i)
-            if (curTick < positions_[i].tickStamp)
-                return i - 1;
-        return positions_.size() - 1;
+        if (nextPos_ == positions_.size() - 1) // 循环播放
+            nextPos_ = 1;
+        if (curTick >= positions_[nextPos_].tickStamp &&
+            nextPos_ < positions_.size())
+            nextPos_ += 1;
+        //////////////////////////////////////////////////////////////////////
+        LOG_TRACE << nextPos_ << " curTick:" << curTick << " tickStamp:" << positions_[nextPos_].tickStamp;
+        //////////////////////////////////////////////////////////////////////
+        return nextPos_ - 1;
     }
-    int getRotationIndex(double curTick) const
+    int getRotationIndex(double curTick)
     {
-        for (unsigned int i = 1; i < rotations_.size(); ++i)
-            if (curTick < rotations_[i].tickStamp)
-                return i - 1;
-        return rotations_.size() - 1;
+        if (nextRot_ == rotations_.size() - 1)
+            nextRot_ = 0;
+        if (curTick >= rotations_[nextRot_].tickStamp &&
+            nextRot_ < rotations_.size())
+            nextRot_ += 1;
+        return nextRot_ - 1;
     }
-    int getScaleIndex(double curTick) const
+    int getScaleIndex(double curTick)
     {
-        for (unsigned int i = 1; i < scales_.size(); ++i)
-            if (curTick < scales_[i].tickStamp)
-                return i - 1;
-        return scales_.size() - 1;
+        if (nextScl_ == scales_.size() - 1)
+            nextScl_ = 0;
+        if (curTick >= scales_[nextScl_].tickStamp &&
+            nextScl_ < scales_.size())
+            nextScl_ += 1;
+        return nextScl_ - 1;
     }
     double getScaleFactor(double lastTickStamp, double nextTickStamp, double curTick) const
     {

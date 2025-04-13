@@ -163,11 +163,11 @@ int main()
 		glEnable(GL_DEPTH_TEST);
 		Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
 					  std::filesystem::current_path() / "../opengl/model_fs.glsl");
-		Model mdl(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
+		Model mdl(std::filesystem::current_path() / "../resrc/obj/sphere/sphere.fbx");
 		Animator animator(mdl);
-		///////////////////////////////////////////////////////////////////////////////////改
+		////////////////////////////////////////////////////////////////////////////////上菜
 		animator.setCurAnimation("骨架|Action");
-		///////////////////////////////////////////////////////////////////////////////////改
+		////////////////////////////////////////////////////////////////////////////////
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		while (!glfwWindowShouldClose(window))
 		{

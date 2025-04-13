@@ -114,42 +114,56 @@ private:
             auto curBone = paiMesh->mBones[i];
             std::string boneName(curBone->mName.C_Str());
             if (!boneLoaded_.contains(boneName))
-                boneLoaded_[boneName] = BoneData{static_cast<int>(boneLoaded_.size()),
-                                                 Converter::convertMatrixToGLMFormat(
-                                                     curBone->mOffsetMatrix)};
+                boneLoaded_.emplace(boneName,
+                                    BoneData{static_cast<int>(boneLoaded_.size()),
+                                             Converter::convertMatrixToGLMFormat(
+                                                 curBone->mOffsetMatrix)});
+            ///////////////////////////////////////////////////////////////////////////////
+            LOG_DEBUG << "mesh预加载骨骼名称#" << boneName << " id#" << boneLoaded_[boneName].id << " offset#\n"
+                      << boneLoaded_[boneName].offset[0][0] << '#'
+                      << boneLoaded_[boneName].offset[1][0] << '#'
+                      << boneLoaded_[boneName].offset[2][0] << '#'
+                      << boneLoaded_[boneName].offset[3][0] << "#\n"
+                      << boneLoaded_[boneName].offset[0][1] << '#'
+                      << boneLoaded_[boneName].offset[1][1] << '#'
+                      << boneLoaded_[boneName].offset[2][1] << '#'
+                      << boneLoaded_[boneName].offset[3][1] << "#\n"
+                      << boneLoaded_[boneName].offset[0][2] << '#'
+                      << boneLoaded_[boneName].offset[1][2] << '#'
+                      << boneLoaded_[boneName].offset[2][2] << '#'
+                      << boneLoaded_[boneName].offset[3][2] << "#\n"
+                      << boneLoaded_[boneName].offset[0][3] << '#'
+                      << boneLoaded_[boneName].offset[1][3] << '#'
+                      << boneLoaded_[boneName].offset[2][3] << '#'
+                      << boneLoaded_[boneName].offset[3][3] << '#';
+            ///////////////////////////////////////////////////////////////////////////////
             for (unsigned int j = 0; j < curBone->mNumWeights; ++j)
             {
                 auto curWeight = curBone->mWeights[j];
                 auto vertexId = curWeight.mVertexId;
                 for (int k = 0; k < MAX_BONE_INFLUENCE; ++k)
-                {
                     if (vertices[vertexId].boneIDs[k] == -1)
                     {
                         vertices[vertexId].boneIDs[k] = boneLoaded_[boneName].id;
                         vertices[vertexId].weights[k] = curWeight.mWeight;
                         break;
                     }
-                }
             }
         }
         for (auto &vertex : vertices) // 归一化权重（有无必要
         {
             float totalWeight = 0.0f;
             for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
-            {
                 if (vertex.boneIDs[i] != -1)
                     totalWeight += vertex.weights[i];
                 else
                     break;
-            }
             if (totalWeight > 0.0f)
                 for (int i = 0; i < MAX_BONE_INFLUENCE; ++i)
-                {
                     if (vertex.boneIDs[i] != -1)
                         vertex.weights[i] /= totalWeight;
                     else
                         break;
-                }
         }
         return vertices;
     }
