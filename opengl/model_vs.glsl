@@ -17,6 +17,7 @@ layout(std430, binding = 0) buffer BoneTransforms {
 
 uniform mat4 projection;
 uniform mat4 view;
+uniform mat4 model;
 
 out vec2 TexCoords;
 out vec3 Normal;
@@ -45,7 +46,7 @@ void main() {
         totalNormal = norm;
     }
 
-    gl_Position = projection * view * totalPosition;
+    gl_Position = projection * view * model * totalPosition;
     Normal = normalize(totalNormal);
     TexCoords = tex;
 }
