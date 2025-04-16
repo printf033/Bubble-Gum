@@ -32,7 +32,7 @@ public:
         {
             auto paiAnimation = paiScene->mAnimations[i];
             animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, paiScene, model_));
-            /////////////////////////////////////////////////////////////////////////////报菜名hhh
+            /////////////////////////////////////////////////////////////////////////////报菜名
             LOG_INFO << paiAnimation->mName.C_Str();
             /////////////////////////////////////////////////////////////////////////////
         }
@@ -63,21 +63,24 @@ public:
     void updateAnimation(double deltaTime)
     {
         assert(curAnim_ != nullptr);
-        curTick_ += deltaTime * curAnim_->getTicksPerSecond();
-        curTick_ = fmod(curTick_, curAnim_->getDuration()); // 循环播放
-        calculateFinalTransform(curAnim_->getRootNode(), glm::mat4(1.0f));
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_);
-        glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, finalTransforms_.size() * sizeof(glm::mat4), finalTransforms_.data());
+        if (curTick_ < curAnim_->getDuration())
+        {
+            calculateFinalTransform(curAnim_->getRootNode(), glm::mat4(1.0f));
+            curTick_ += deltaTime * curAnim_->getTicksPerSecond();
+            glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_);
+            glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, finalTransforms_.size() * sizeof(glm::mat4), finalTransforms_.data());
+        }
     }
 
 private:
     void calculateFinalTransform(const Hierarchy &node, glm::mat4 parentTransform)
     {
-        if (model_.getBoneLoaded().contains(node.name))
+        //////////////////////////////////////////////////////////////////////改正
+        if (node.name != "骨架" && model_.getBoneLoaded().contains(node.name))
         {
-            // ///////////////////////////////////////////////////////////////////////////////////////////
-            // LOG_DEBUG << "当前节点名称#" << node.name;
-            // ///////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////
+            LOG_DEBUG << "当前节点名称#" << node.name;
+            //////////////////////////////////////////////////////////
             parentTransform *= curAnim_->getBoneKeyFrame(node.name).interpolate(curTick_);
             finalTransforms_[model_.getBoneLoaded()[node.name].id] = parentTransform * model_.getBoneLoaded()[node.name].offset;
         }

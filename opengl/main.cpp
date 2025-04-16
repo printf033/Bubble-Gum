@@ -13,8 +13,8 @@
 #include "animation.hpp"
 #include "animator.hpp"
 
-#define SCR_WIDTH 800
-#define SCR_HEIGHT 600
+#define SCR_WIDTH 1000
+#define SCR_HEIGHT 800
 
 Camera camera((float)SCR_WIDTH / (float)SCR_HEIGHT);
 float lastX = 0.0f;
@@ -25,16 +25,16 @@ void debugOpenGL();
 int main()
 {
 	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
-	mylog::LogMessage::_setTerminalColorful();
-	// mylog::FileManager::_setBasename("log");
-	// mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
-	// mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
+	// mylog::LogMessage::_setTerminalColorful();
+	mylog::FileManager::_setBasename("log");
+	mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
+	mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // debug
+	// glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // debug
 	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "BBG", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height)
@@ -53,22 +53,23 @@ int main()
 		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true); });
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		glfwTerminate();
 		LOG_FATAL << "Failed to initialize GLAD";
 	}
-	debugOpenGL();
+	// debugOpenGL();
+	glEnable(GL_DEPTH_TEST);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	{
-		glEnable(GL_DEPTH_TEST);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
 					  std::filesystem::current_path() / "../opengl/model_fs.glsl");
-		Model model(std::filesystem::current_path() / "../resrc/obj/sphere/sphere.fbx");
-		// ////////////////////////////////////////////////////////////////////////////////上菜
-		// Animator animator(model);
-		// animator.setCurAnimation("骨架|Action");
-		// ////////////////////////////////////////////////////////////////////////////////
+		Model model(std::filesystem::current_path() / "../resrc/obj/ring/ring.fbx");
+		//////////////////////////////////////////////////////////////////////////////上菜
+		Animator animator(model);
+		animator.setCurAnimation("骨架|Action");
+		//////////////////////////////////////////////////////////////////////////////
 		double deltaTime = 0.0;
 		double lastTime = 0.0;
 		while (!glfwWindowShouldClose(window))
@@ -84,13 +85,13 @@ int main()
 				camera.processKeyboard(CamMovement::LEFT, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 				camera.processKeyboard(CamMovement::RIGHT, deltaTime);
-			//animator.updateAnimation(deltaTime);
-			glClearColor(0.0f, 0.5f, 0.0f, 1.0f);
+			animator.updateAnimation(deltaTime);
+			glClearColor(0.0f, 0.7f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			shader.use();
 			shader.setMat4("model", glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
-											  0.0f, 0.0f, 1.0f, 0.0f,
-											  0.0f, -1.0f, 0.0f, 0.0f,
+											  0.0f, 1.0f, .0f, 0.0f,
+											  0.0f, .0f, 1.0f, 0.0f,
 											  0.0f, 0.0f, 0.0f, 1.0f));
 			shader.setMat4("view", camera.updateView());
 			shader.setMat4("projection", camera.updateProjection());

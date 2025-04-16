@@ -47,7 +47,7 @@ public:
             double tickStamp = channel->mPositionKeys[i].mTime;
             positions_.push_back({Converter::getGLMVec(pos), tickStamp});
             ///////////////////////////////////////////////////////////////////////////////////
-            LOG_DEBUG << "key#" << i << " pos#\n"
+            LOG_DEBUG << i << " tickStamp#" << positions_.back().tickStamp << " pos#\n"
                       << positions_.back().position[0] << '#'
                       << positions_.back().position[1] << '#'
                       << positions_.back().position[2] << '#';
@@ -59,6 +59,13 @@ public:
             aiQuaternion ort = channel->mRotationKeys[i].mValue;
             double tickStamp = channel->mRotationKeys[i].mTime;
             rotations_.push_back({Converter::getGLMQuat(ort), tickStamp});
+            ///////////////////////////////////////////////////////////////////////////////////
+            LOG_DEBUG << i << " tickStamp#" << rotations_.back().tickStamp << " ort#\n"
+                      << rotations_.back().orientation[0] << '#'
+                      << rotations_.back().orientation[1] << '#'
+                      << rotations_.back().orientation[2] << '#'
+                      << rotations_.back().orientation[3] << '#';
+            ///////////////////////////////////////////////////////////////////////////////////
         }
         scales_.reserve(channel->mNumScalingKeys);
         for (unsigned int i = 0; i < channel->mNumScalingKeys; ++i)
@@ -66,6 +73,12 @@ public:
             aiVector3D scl = channel->mScalingKeys[i].mValue;
             double tickStamp = channel->mScalingKeys[i].mTime;
             scales_.push_back({Converter::getGLMVec(scl), tickStamp});
+            ///////////////////////////////////////////////////////////////////////////////////
+            LOG_DEBUG << i << " tickStamp#" << scales_.back().tickStamp << " scl#\n"
+                      << scales_.back().scale[0] << '#'
+                      << scales_.back().scale[1] << '#'
+                      << scales_.back().scale[2] << '#';
+            ///////////////////////////////////////////////////////////////////////////////////
         }
     }
     ~KeyFrame() {}
@@ -106,11 +119,12 @@ private:
         if (positions_.empty())
             return glm::mat4(1.0f);
         int key = getPositionIndex(curTick);
-        if (key == positions_.size() - 1)
+        if (key >= positions_.size() - 1)
             return glm::translate(glm::mat4(1.0f), positions_[key].position);
         double scaleFactor = getScaleFactor(positions_[key].tickStamp,
                                             positions_[key + 1].tickStamp,
                                             curTick);
+        /////////////////////////////////////////////////////////////////////////////////
         glm::vec3 finalPosition = glm::mix(positions_[key].position,
                                            positions_[key + 1].position,
                                            scaleFactor);
@@ -121,11 +135,12 @@ private:
         if (rotations_.empty())
             return glm::mat4(1.0f);
         int key = getRotationIndex(curTick);
-        if (key == rotations_.size() - 1)
+        if (key >= rotations_.size() - 1)
             return glm::toMat4(glm::normalize(rotations_[key].orientation));
         double scaleFactor = getScaleFactor(rotations_[key].tickStamp,
                                             rotations_[key + 1].tickStamp,
                                             curTick);
+        /////////////////////////////////////////////////////////////////////////////////
         glm::quat q1 = rotations_[key].orientation;
         glm::quat q2 = rotations_[key + 1].orientation;
         if (glm::dot(q1, q2) < 0.0f)
@@ -138,11 +153,12 @@ private:
         if (scales_.empty())
             return glm::mat4(1.0f);
         int key = getScaleIndex(curTick);
-        if (key == scales_.size())
+        if (key >= scales_.size())
             return glm::scale(glm::mat4(1.0f), scales_[key].scale);
         double scaleFactor = getScaleFactor(scales_[key].tickStamp,
                                             scales_[key + 1].tickStamp,
                                             curTick);
+        /////////////////////////////////////////////////////////////////////////////////
         glm::vec3 finalScale = glm::mix(scales_[key].scale,
                                         scales_[key + 1].scale,
                                         scaleFactor);
@@ -150,20 +166,13 @@ private:
     }
     int getPositionIndex(double curTick)
     {
-        if (nextPos_ == positions_.size() - 1) // 循环播放
-            nextPos_ = 1;
         if (curTick >= positions_[nextPos_].tickStamp &&
             nextPos_ < positions_.size())
             nextPos_ += 1;
-        //////////////////////////////////////////////////////////////////////
-        LOG_TRACE << nextPos_ << " curTick:" << curTick << " tickStamp:" << positions_[nextPos_].tickStamp;
-        //////////////////////////////////////////////////////////////////////
         return nextPos_ - 1;
     }
     int getRotationIndex(double curTick)
     {
-        if (nextRot_ == rotations_.size() - 1)
-            nextRot_ = 0;
         if (curTick >= rotations_[nextRot_].tickStamp &&
             nextRot_ < rotations_.size())
             nextRot_ += 1;
@@ -171,8 +180,6 @@ private:
     }
     int getScaleIndex(double curTick)
     {
-        if (nextScl_ == scales_.size() - 1)
-            nextScl_ = 0;
         if (curTick >= scales_[nextScl_].tickStamp &&
             nextScl_ < scales_.size())
             nextScl_ += 1;
