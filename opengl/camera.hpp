@@ -2,17 +2,10 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "movement.hpp"
 
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
-
-enum class CamMovement
-{
-    FORWARD,
-    BACKWARD,
-    LEFT,
-    RIGHT
-};
 
 class Camera
 {
@@ -57,21 +50,21 @@ public:
     {
         return glm::perspective(glm::radians(fovy_), aspect_, 0.1f, 100.0f);
     }
-    void processKeyboard(CamMovement direction, float deltaTime)
+    void processKeyboard(Movement direction, float deltaTime)
     {
         float rate = movementSensitivity_ * deltaTime;
         switch (direction)
         {
-        case CamMovement::FORWARD:
+        case Movement::FORWARD:
             position_ += front_ * rate;
             break;
-        case CamMovement::BACKWARD:
+        case Movement::BACKWARD:
             position_ -= front_ * rate;
             break;
-        case CamMovement::LEFT:
+        case Movement::LEFT:
             position_ -= right_ * rate;
             break;
-        case CamMovement::RIGHT:
+        case Movement::RIGHT:
             position_ += right_ * rate;
             break;
         default:

@@ -13,6 +13,8 @@
 #include "animation.hpp"
 #include "animator.hpp"
 
+#include "net.hpp"
+
 #define SCR_WIDTH 1000
 #define SCR_HEIGHT 800
 
@@ -63,13 +65,19 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	{
-		Shader shader(std::filesystem::current_path() / "../opengl/model_vs.glsl",
-					  std::filesystem::current_path() / "../opengl/model_fs.glsl");
+		Shader shader(std::filesystem::current_path() / "../opengl/anim_vs.glsl",
+					  std::filesystem::current_path() / "../opengl/anim_fs.glsl");
 		Model model(std::filesystem::current_path() / "../resrc/obj/ring/ring.fbx");
-		//////////////////////////////////////////////////////////////////////////////上菜
+		Shader shader1(std::filesystem::current_path() / "../opengl/static_vs.glsl",
+					   std::filesystem::current_path() / "../opengl/static_fs.glsl");
+		Model model1(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
+		// Shader shader2(std::filesystem::current_path() / "../opengl/static_vs.glsl",
+		// 			   std::filesystem::current_path() / "../opengl/static_fs.glsl");
+		// Model model2(std::filesystem::current_path() / "../resrc/obj/sphere/sphere.fbx");
+		// //////////////////////////////////////////////////////////////////////////////上菜
 		Animator animator(model);
 		animator.setCurAnimation("骨架|Action");
-		//////////////////////////////////////////////////////////////////////////////
+		// //////////////////////////////////////////////////////////////////////////////
 		double deltaTime = 0.0;
 		double lastTime = 0.0;
 		while (!glfwWindowShouldClose(window))
@@ -77,25 +85,39 @@ int main()
 			double curTime = glfwGetTime();
 			deltaTime = curTime - lastTime;
 			lastTime = curTime;
+			//////////////////////////////////////////////////////////////////
 			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-				camera.processKeyboard(CamMovement::FORWARD, deltaTime);
+				camera.processKeyboard(Movement::FORWARD, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-				camera.processKeyboard(CamMovement::BACKWARD, deltaTime);
+				camera.processKeyboard(Movement::BACKWARD, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-				camera.processKeyboard(CamMovement::LEFT, deltaTime);
+				camera.processKeyboard(Movement::LEFT, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-				camera.processKeyboard(CamMovement::RIGHT, deltaTime);
+				camera.processKeyboard(Movement::RIGHT, deltaTime);
+			//////////////////////////////////////////////////////////////////
+			if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+				model.processKeyboard(Movement::FORWARD, deltaTime);
+			if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+				model.processKeyboard(Movement::BACKWARD, deltaTime);
+			if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+				model.processKeyboard(Movement::LEFT, deltaTime);
+			if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+				model.processKeyboard(Movement::RIGHT, deltaTime);
+			//////////////////////////////////////////////////////////////////
 			animator.updateAnimation(deltaTime);
 			glClearColor(0.0f, 0.7f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			shader.use();
-			shader.setMat4("model", glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
-											  0.0f, 1.0f, .0f, 0.0f,
-											  0.0f, .0f, 1.0f, 0.0f,
-											  0.0f, 0.0f, 0.0f, 1.0f));
+			shader.setMat4("model", model.getGlobalTrans());
 			shader.setMat4("view", camera.updateView());
 			shader.setMat4("projection", camera.updateProjection());
 			model.draw(shader);
+			shader1.use();
+			shader1.setMat4("model", model1.getGlobalTrans());
+			shader1.setMat4("view", camera.updateView());
+			shader1.setMat4("projection", camera.updateProjection());
+			model1.draw(shader);
+			// model2.draw(shader1);
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

@@ -9,6 +9,7 @@
 #include <stb/stb_image.h>
 #include "mesh.hpp"
 #include "converter.hpp"
+#include "movement.hpp"
 
 #ifndef MODEL_HPP
 #define MODEL_HPP
@@ -25,10 +26,20 @@ class Model
     std::vector<Texture> texturesLoaded_;
     std::filesystem::path path_;
     std::unordered_map<std::string, BoneData> boneLoaded_;
+    glm::mat4 GlobalTrans_;
+    glm::vec3 front_;
+    glm::vec3 up_;
+    glm::vec3 right_;
+    float movementSensitivity_;
 
 public:
     Model(std::filesystem::path &&path)
-        : path_(path)
+        : path_(path),
+          GlobalTrans_(glm::mat4(1.0f)),
+          front_(glm::vec3(0.0f, 0.0f, -1.0f)),
+          up_(glm::vec3(0.0f, 1.0f, 0.0f)),
+          right_(glm::vec3(1.0f, 0.0f, 0.0f)),
+          movementSensitivity_(1.5f)
     {
         Assimp::Importer importer;
         const aiScene *paiScene = importer.ReadFile(path_,
@@ -54,6 +65,28 @@ public:
     }
     std::filesystem::path getPath() const { return path_; }
     std::unordered_map<std::string, BoneData> &getBoneLoaded() { return boneLoaded_; }
+    const glm::mat4 &getGlobalTrans() const { return GlobalTrans_; }
+    void processKeyboard(Movement direction, float deltaTime)
+    {
+        float rate = movementSensitivity_ * deltaTime;
+        switch (direction)
+        {
+        case Movement::FORWARD:
+            GlobalTrans_ = glm::translate(GlobalTrans_, front_ * rate);
+            break;
+        case Movement::BACKWARD:
+            GlobalTrans_ = glm::translate(GlobalTrans_, -front_ * rate);
+            break;
+        case Movement::LEFT:
+            GlobalTrans_ = glm::translate(GlobalTrans_, -right_ * rate);
+            break;
+        case Movement::RIGHT:
+            GlobalTrans_ = glm::translate(GlobalTrans_, right_ * rate);
+            break;
+        default:
+            break;
+        }
+    }
 
 private:
     void processNode(aiNode *paiNode, const aiScene *paiScene)

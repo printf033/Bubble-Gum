@@ -155,4 +155,57 @@ namespace net
         close(ur_fd);
         return std::string();
     }
+
+    Peer_udp::Peer_udp(const std::string &my_ip, const int my_port)
+        : my_fd_(socket(AF_INET, SOCK_DGRAM, 0)),
+          socklen_(sizeof(sockaddr_in))
+    {
+        if (-1 == my_fd_)
+            throw std::runtime_error("fail to create a socket");
+        sockaddr_in my_sockaddr_in = {};
+        my_sockaddr_in.sin_family = AF_INET;
+        my_sockaddr_in.sin_addr.s_addr = inet_addr(my_ip.c_str());
+        my_sockaddr_in.sin_port = htons(my_port);
+        if (-1 == bind(my_fd_, (const sockaddr *)&my_sockaddr_in, sizeof(sockaddr_in)))
+            throw std::runtime_error("fail to bind the socket");
+    }
+    Peer_udp::~Peer_udp() { close(my_fd_); }
+    void Peer_udp::setRecvTimer(const int sec)
+    {
+        struct timeval tv_struc;
+        tv_struc.tv_sec = sec;
+        tv_struc.tv_usec = 0;
+        setsockopt(my_fd_, SOL_SOCKET, SO_RCVTIMEO, &tv_struc, sizeof(tv_struc));
+    }
+    bool Peer_udp::send(const std::string &ur_ip, const int ur_port, const std::string &data)
+    {
+        sockaddr_in ur_sockaddr_in = {};
+        ur_sockaddr_in.sin_family = AF_INET;
+        ur_sockaddr_in.sin_addr.s_addr = inet_addr(ur_ip.c_str());
+        ur_sockaddr_in.sin_port = htons(ur_port);
+        const int total = data.size() + 1;
+        int sum = 0;
+        int times = 3;
+        while (times-- > 0 && sum < total)
+        {
+            int n = ::sendto(my_fd_, data.c_str() + sum, total - sum, 0, (const sockaddr *)&ur_sockaddr_in, socklen_);
+            if (n <= 0)
+                return false;
+            sum += n;
+        }
+        if (times < 0)
+            return false;
+        return true;
+    }
+    std::string Peer_udp::recv(std::string &ur_ip, int &ur_port)
+    {
+        sockaddr_in ur_sockaddr_in = {};
+        ur_sockaddr_in.sin_family = AF_INET;
+        ur_sockaddr_in.sin_addr.s_addr = inet_addr(ur_ip.c_str());
+        ur_sockaddr_in.sin_port = htons(ur_port);
+        char buf[MAX_RECV_SIZE] = {};
+        if (::recvfrom(my_fd_, buf, MAX_RECV_SIZE, 0, (sockaddr *)&ur_sockaddr_in, &socklen_) > 0)
+            return std::string(buf);
+        return std::string();
+    }
 }

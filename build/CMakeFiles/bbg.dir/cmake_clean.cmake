@@ -13,8 +13,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o.d"
   "CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o"
   "CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o.d"
-  "CMakeFiles/bbg.dir/net/src/crypt.cpp.o"
-  "CMakeFiles/bbg.dir/net/src/crypt.cpp.o.d"
   "CMakeFiles/bbg.dir/net/src/peer.cpp.o"
   "CMakeFiles/bbg.dir/net/src/peer.cpp.o.d"
   "CMakeFiles/bbg.dir/opengl/main.cpp.o"

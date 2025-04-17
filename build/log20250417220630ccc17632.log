@@ -1,0 +1,394 @@
+2025-04-17T22:06:30.987022 [DEBUG] [17632]model.hpp:155:processVertices > mesh预加载骨骼名称#骨骼 id#0 offset#
+1#0#0#0#
+0#1#0#0#
+0#0#1#0#
+0#0#0#1#
+2025-04-17T22:06:30.991214 [DEBUG] [17632]model.hpp:155:processVertices > mesh预加载骨骼名称#骨骼 id#0 offset#
+1#0#0#0#
+0#1#-4.37114e-08#0#
+0#4.37114e-08#1#0#
+0#0#0#1#
+2025-04-17T22:06:30.994058 [DEBUG] [17632]animation.hpp:56:readKeyFrames > 本动画所有有关骨骼名称#骨架 id#1 offset#
+1#0#0#0#
+0#1#0#0#
+0#0#1#0#
+0#0#0#1#
+2025-04-17T22:06:30.994137 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 0 tickStamp#0 pos#
+0#0#0#
+2025-04-17T22:06:30.994176 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 1 tickStamp#19 pos#
+0#0#0#
+2025-04-17T22:06:30.994194 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 0 tickStamp#0 ort#
+-0.707107#0#0#0.707107#
+2025-04-17T22:06:30.994216 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 1 tickStamp#19 ort#
+-0.707107#0#0#0.707107#
+2025-04-17T22:06:30.994237 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 0 tickStamp#0 scl#
+1#1#1#
+2025-04-17T22:06:30.994259 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 1 tickStamp#19 scl#
+1#1#1#
+2025-04-17T22:06:30.994304 [DEBUG] [17632]animation.hpp:56:readKeyFrames > 本动画所有有关骨骼名称#骨骼 id#0 offset#
+1#0#0#0#
+0#1#0#0#
+0#0#1#0#
+0#0#0#1#
+2025-04-17T22:06:30.994354 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 0 tickStamp#0 pos#
+0#0#0#
+2025-04-17T22:06:30.994392 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 1 tickStamp#1 pos#
+0#0#0#
+2025-04-17T22:06:30.994416 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 2 tickStamp#2 pos#
+0#0#0#
+2025-04-17T22:06:30.994436 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 3 tickStamp#3 pos#
+0#0#0#
+2025-04-17T22:06:30.994448 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 4 tickStamp#4 pos#
+0#0#0#
+2025-04-17T22:06:30.994470 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 5 tickStamp#5 pos#
+0#0#0#
+2025-04-17T22:06:30.994509 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 6 tickStamp#6 pos#
+0#0#0#
+2025-04-17T22:06:30.994525 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 7 tickStamp#7 pos#
+0#0#0#
+2025-04-17T22:06:30.994540 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 8 tickStamp#8 pos#
+0#0#0#
+2025-04-17T22:06:30.994554 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 9 tickStamp#9 pos#
+0#0#0#
+2025-04-17T22:06:30.994572 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 10 tickStamp#10 pos#
+0#0#0#
+2025-04-17T22:06:30.994606 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 11 tickStamp#11 pos#
+0#0#0#
+2025-04-17T22:06:30.994628 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 12 tickStamp#12 pos#
+0#0#0#
+2025-04-17T22:06:30.994644 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 13 tickStamp#13 pos#
+0#0#0#
+2025-04-17T22:06:30.994662 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 14 tickStamp#14 pos#
+0#0#0#
+2025-04-17T22:06:30.994678 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 15 tickStamp#15 pos#
+0#0#0#
+2025-04-17T22:06:30.994692 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 16 tickStamp#16 pos#
+0#0#0#
+2025-04-17T22:06:30.994709 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 17 tickStamp#17 pos#
+0#0#0#
+2025-04-17T22:06:30.994723 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 18 tickStamp#18 pos#
+0#0#0#
+2025-04-17T22:06:30.994744 [DEBUG] [17632]keyframe.hpp:50:KeyFrame > 19 tickStamp#19 pos#
+0#0#0#
+2025-04-17T22:06:30.994759 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 0 tickStamp#0 ort#
+0.707107#0#0#0.707107#
+2025-04-17T22:06:30.994779 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 1 tickStamp#1 ort#
+0.706895#-0.0173156#-0.0173156#0.706895#
+2025-04-17T22:06:30.994812 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 2 tickStamp#2 ort#
+0.70409#-0.0652425#-0.0652425#0.704091#
+2025-04-17T22:06:30.994831 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 3 tickStamp#3 ort#
+0.693589#-0.1376#-0.1376#0.693589#
+2025-04-17T22:06:30.994851 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 4 tickStamp#4 ort#
+0.670303#-0.225153#-0.225153#0.670303#
+2025-04-17T22:06:30.994868 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 5 tickStamp#5 ort#
+0.633183#-0.314769#-0.314769#0.633183#
+2025-04-17T22:06:30.994886 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 6 tickStamp#6 ort#
+0.58774#-0.393144#-0.393144#0.58774#
+2025-04-17T22:06:30.994903 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 7 tickStamp#7 ort#
+0.544001#-0.451734#-0.451734#0.544001#
+2025-04-17T22:06:30.994920 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 8 tickStamp#8 ort#
+0.512094#-0.487606#-0.487606#0.512094#
+2025-04-17T22:06:30.994940 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 9 tickStamp#9 ort#
+-0.5#0.5#0.5#-0.5#
+2025-04-17T22:06:30.994958 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 10 tickStamp#10 ort#
+0.51419#-0.485395#-0.485395#0.51419#
+2025-04-17T22:06:30.994977 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 11 tickStamp#11 ort#
+0.554314#-0.439017#-0.439017#0.554314#
+2025-04-17T22:06:30.994994 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 12 tickStamp#12 ort#
+0.614847#-0.349233#-0.349233#0.614847#
+2025-04-17T22:06:30.995011 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 13 tickStamp#13 ort#
+0.678027#-0.200696#-0.200696#0.678027#
+2025-04-17T22:06:30.995028 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 14 tickStamp#14 ort#
+0.707107#8.9407e-08#8.9407e-08#0.707107#
+2025-04-17T22:06:30.995048 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 15 tickStamp#15 ort#
+0.678027#0.200696#0.200696#0.678027#
+2025-04-17T22:06:30.995066 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 16 tickStamp#16 ort#
+0.614847#0.349233#0.349233#0.614847#
+2025-04-17T22:06:30.995093 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 17 tickStamp#17 ort#
+0.554314#0.439017#0.439017#0.554314#
+2025-04-17T22:06:30.995112 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 18 tickStamp#18 ort#
+0.51419#0.485395#0.485395#0.51419#
+2025-04-17T22:06:30.995130 [DEBUG] [17632]keyframe.hpp:63:KeyFrame > 19 tickStamp#19 ort#
+0.5#0.5#0.5#0.5#
+2025-04-17T22:06:30.995149 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 0 tickStamp#0 scl#
+1#1#1#
+2025-04-17T22:06:30.995167 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 1 tickStamp#1 scl#
+1#1#1#
+2025-04-17T22:06:30.995186 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 2 tickStamp#2 scl#
+1#1#1#
+2025-04-17T22:06:30.995204 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 3 tickStamp#3 scl#
+1#1#1#
+2025-04-17T22:06:30.995217 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 4 tickStamp#4 scl#
+1#1#1#
+2025-04-17T22:06:30.995234 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 5 tickStamp#5 scl#
+1#1#1#
+2025-04-17T22:06:30.995247 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 6 tickStamp#6 scl#
+1#1#1#
+2025-04-17T22:06:30.995263 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 7 tickStamp#7 scl#
+1#1#1#
+2025-04-17T22:06:30.995277 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 8 tickStamp#8 scl#
+1#1#1#
+2025-04-17T22:06:30.995293 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 9 tickStamp#9 scl#
+1#1#1#
+2025-04-17T22:06:30.995307 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 10 tickStamp#10 scl#
+1#1#1#
+2025-04-17T22:06:30.995324 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 11 tickStamp#11 scl#
+1#1#1#
+2025-04-17T22:06:30.995340 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 12 tickStamp#12 scl#
+1#1#1#
+2025-04-17T22:06:30.995368 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 13 tickStamp#13 scl#
+1#1#1#
+2025-04-17T22:06:30.995385 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 14 tickStamp#14 scl#
+1#1#1#
+2025-04-17T22:06:30.995403 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 15 tickStamp#15 scl#
+1#1#1#
+2025-04-17T22:06:30.995418 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 16 tickStamp#16 scl#
+1#1#1#
+2025-04-17T22:06:30.995433 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 17 tickStamp#17 scl#
+1#1#1#
+2025-04-17T22:06:30.995450 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 18 tickStamp#18 scl#
+1#1#1#
+2025-04-17T22:06:30.995466 [DEBUG] [17632]keyframe.hpp:77:KeyFrame > 19 tickStamp#19 scl#
+1#1#1#
+2025-04-17T22:06:30.995517 [INFO ] [17632]animator.hpp:36:Animator > 骨架|Action
+2025-04-17T22:06:30.995632 [INFO ] [17632]animator.hpp:58:setCurAnimation > Set animation: 骨架|Action, duration: 19, ticks/s: 24
+2025-04-17T22:06:30.995658 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:30.995696 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+1#0#0#0#
+0#1.78814e-07#-1#0#
+0#1#1.78814e-07#0#
+0#0#0#1#
+2025-04-17T22:06:30.999453 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:30.999512 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.909342#1.63913e-07#-0.41605#0#
+-0.41605#6.55651e-07#-0.909342#0#
+1.63913e-07#1#6.55651e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.020769 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.020846 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.838773#-8.9407e-08#-0.544482#0#
+-0.544482#0#-0.838773#0#
+2.98023e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.022109 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.022189 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.731043#0#-0.682332#0#
+-0.682332#0#-0.731043#0#
+0#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.053170 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.053300 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.719941#-5.96046e-08#-0.694035#0#
+-0.694035#-1.19209e-07#-0.719941#0#
+5.96046e-08#1#-2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.068043 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.068188 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.566579#-1.49012e-07#-0.824007#0#
+-0.824007#0#-0.566579#0#
+5.96046e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.084641 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.084743 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.489051#-8.9407e-08#-0.872255#0#
+-0.872255#0#-0.489051#0#
+0#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.101159 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.101271 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.397361#0#-0.917662#0#
+-0.917662#0#-0.397361#0#
+0#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.117995 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.118078 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.317778#-2.98023e-08#-0.948165#0#
+-0.948165#-1.19209e-07#-0.317778#0#
+-2.98023e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.134476 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.134561 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.23746#0#-0.971397#0#
+-0.971397#-1.19209e-07#-0.23746#0#
+0#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.151129 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.151212 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.166363#0#-0.986065#0#
+-0.986065#0#-0.166363#0#
+0#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.166444 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.166546 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.112616#0#-0.993638#0#
+-0.993639#5.96046e-08#-0.112616#0#
+0#1#5.96046e-08#0#
+0#0#0#1#
+2025-04-17T22:06:31.182755 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.182840 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0629085#5.96046e-08#-0.998019#0#
+-0.998019#1.19209e-07#-0.0629086#0#
+1.78814e-07#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.199492 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.199591 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0348431#5.96046e-08#-0.999393#0#
+-0.999393#0#-0.0348432#0#
+5.96046e-08#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.216109 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.216257 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0151782#0#-0.999885#0#
+-0.999885#0#-0.0151784#0#
+1.19209e-07#1#-2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.232965 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.233104 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.00511467#-5.96046e-08#-0.999987#0#
+-0.999987#-1.19209e-07#-0.00511473#0#
+-5.96046e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.249711 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.249832 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0283928#-5.96046e-08#-0.999597#0#
+-0.999597#0#-0.0283928#0#
+-5.96046e-08#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.266158 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.266257 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.05154#-1.19209e-07#-0.998671#0#
+-0.998671#-2.38419e-07#-0.05154#0#
+-2.38419e-07#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.282732 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.282816 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.107739#2.98023e-08#-0.994179#0#
+-0.994179#0#-0.107739#0#
+-2.98023e-08#1#5.96046e-08#0#
+0#0#0#1#
+2025-04-17T22:06:31.300057 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.300255 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.176058#2.38419e-07#-0.98438#0#
+-0.98438#1.19209e-07#-0.176058#0#
+1.19209e-07#1#2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.316867 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.317041 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.259704#2.98023e-07#-0.965688#0#
+-0.965688#2.38419e-07#-0.259704#0#
+1.19209e-07#1#3.57628e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.333691 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.333837 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.376768#3.27826e-07#-0.926308#0#
+-0.926308#1.19209e-07#-0.376768#0#
+5.96046e-08#1#2.98023e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.350254 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.350444 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.488343#2.98023e-07#-0.872652#0#
+-0.872652#1.19209e-07#-0.488343#0#
+2.98023e-08#1#2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.366808 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.366949 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.627757#1.49012e-07#-0.778409#0#
+-0.778409#-1.19209e-07#-0.627757#0#
+-5.96046e-08#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.383663 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.383807 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.758142#2.98023e-08#-0.65209#0#
+-0.65209#-1.19209e-07#-0.758142#0#
+-8.9407e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.400173 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.400314 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.871692#1.49012e-08#-0.490054#0#
+-0.490054#-1.19209e-07#-0.871692#0#
+-5.96046e-08#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.416884 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.417043 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.959907#4.47035e-08#-0.280319#0#
+-0.280319#0#-0.959907#0#
+-1.49012e-08#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.433510 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.433662 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.998576#1.49012e-08#-0.0533533#0#
+-0.0533533#3.57628e-07#-0.998576#0#
+3.72529e-09#1#3.57628e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.450088 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.450230 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.984482#-5.21541e-08#0.175485#0#
+0.175485#3.57628e-07#-0.984482#0#
+-7.45058e-09#1#3.57628e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.466554 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.466625 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.918934#-1.04308e-07#0.39441#0#
+0.39441#1.19209e-07#-0.918935#0#
+1.49012e-08#1#1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.483231 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.483368 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.813122#-1.19209e-07#0.582093#0#
+0.582093#1.78814e-07#-0.813122#0#
+0#1#2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.499894 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.500052 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.693648#-1.49012e-07#0.720314#0#
+0.720314#0#-0.693648#0#
+5.96046e-08#1#1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.516084 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.516154 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.551112#-2.98023e-07#0.834431#0#
+0.834431#0#-0.551112#0#
+5.96046e-08#1#1.78814e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.533103 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.533246 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.434249#-2.98023e-07#0.900793#0#
+0.900793#0#-0.434249#0#
+0#1#1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.549527 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.549616 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.318504#-2.08616e-07#0.947922#0#
+0.947922#5.96046e-08#-0.318504#0#
+-8.9407e-08#1#1.78814e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.566753 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.566929 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.213623#-3.27826e-07#0.976916#0#
+0.976916#1.19209e-07#-0.213623#0#
+-2.08616e-07#1#2.38419e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.583133 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.583250 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.143257#-1.49012e-07#0.989685#0#
+0.989686#0#-0.143257#0#
+2.98023e-08#1#1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.599571 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.599661 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0753617#2.98023e-08#0.997156#0#
+0.997156#-3.57628e-07#-0.0753618#0#
+2.98023e-07#1#-1.19209e-07#0#
+0#0#0#1#
+2025-04-17T22:06:31.615990 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.616069 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0407661#-2.98023e-08#0.999169#0#
+0.999169#-2.38419e-07#-0.0407661#0#
+1.49012e-07#1#0#0#
+0#0#0#1#
+2025-04-17T22:06:31.633553 [DEBUG] [17632]animator.hpp:82:calculateFinalTransform > 当前节点名称#骨骼
+2025-04-17T22:06:31.633733 [DEBUG] [17632]keyframe.hpp:95:interpolate > 模型变换矩阵#
+0.0180771#-8.9407e-08#0.999837#0#
+0.999837#-3.57628e-07#-0.0180773#0#
+2.08616e-07#1#0#0#
+0#0#0#1#

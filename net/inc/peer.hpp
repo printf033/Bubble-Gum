@@ -42,6 +42,20 @@ namespace net
         bool send(const int ur_fd, const std::string &data);
         std::string recv(const int ur_fd); // 3s接收超时
     };
+
+    class Peer_udp
+    {
+        const int my_fd_;
+        socklen_t socklen_;
+
+    public:
+        Peer_udp(const std::string &my_ip, const int my_port);
+        ~Peer_udp();
+        void setRecvTimer(const int sec);
+
+        bool send(const std::string &ur_ip, const int ur_port, const std::string &data);
+        std::string recv(std::string &ur_ip, int &ur_port);
+    };
 }
 
 #endif
