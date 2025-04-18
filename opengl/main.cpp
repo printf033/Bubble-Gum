@@ -13,8 +13,6 @@
 #include "animation.hpp"
 #include "animator.hpp"
 
-#include "net.hpp"
-
 #define SCR_WIDTH 1000
 #define SCR_HEIGHT 800
 
@@ -22,46 +20,19 @@ Camera camera((float)SCR_WIDTH / (float)SCR_HEIGHT);
 float lastX = 0.0f;
 float lastY = 0.0f;
 
-void debugOpenGL();
+void setLog();
+void initGLFW();
+GLFWwindow *setWindow();
+void initGLAD();
+void setDebug();
 
 int main()
 {
-	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
-	// mylog::LogMessage::_setTerminalColorful();
-	mylog::FileManager::_setBasename("log");
-	mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
-	mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
-
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // debug
-	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "BBG", NULL, NULL);
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height)
-								   { glViewport(0, 0, width, height); });
-	glfwSetScrollCallback(window, [](GLFWwindow *window, double xoffset, double yoffset)
-						  { camera.processMouseScroll(yoffset); });
-	glfwSetCursorPosCallback(window, [](GLFWwindow *window, double xpos, double ypos)
-							 {
-		float xoffset = xpos - lastX;
-		float yoffset = lastY - ypos;
-		lastX = xpos;
-		lastY = ypos;
-		camera.processMouseMovement(xoffset, yoffset); });
-	glfwSetKeyCallback(window, [](GLFWwindow *window, int key, int scancode, int action, int mods)
-					   {
-		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, true); });
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		glfwTerminate();
-		LOG_FATAL << "Failed to initialize GLAD";
-	}
-	// debugOpenGL();
+	setLog();
+	initGLFW();
+	GLFWwindow *window = setWindow();
+	initGLAD();
+	setDebug();
 	glEnable(GL_DEPTH_TEST);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	{
@@ -126,7 +97,57 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-void debugOpenGL()
+void setLog()
+{
+	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
+	mylog::LogMessage::_setTerminalColorful();
+	// mylog::FileManager::_setBasename("log");
+	// mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
+	// mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
+}
+void initGLFW()
+{
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // debug
+}
+GLFWwindow *setWindow()
+{
+	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "BBG", NULL, NULL);
+	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height)
+								   { glViewport(0, 0, width, height); });
+	glfwSetScrollCallback(window, [](GLFWwindow *window, double xoffset, double yoffset)
+						  { camera.processMouseScroll(yoffset); });
+	glfwSetCursorPosCallback(window, [](GLFWwindow *window, double xpos, double ypos)
+							 {
+								float xoffset = xpos - lastX;
+								float yoffset = lastY - ypos;
+								lastX = xpos;
+								lastY = ypos;
+								camera.processMouseMovement(xoffset, yoffset); });
+	glfwSetKeyCallback(window, [](GLFWwindow *window, int key, int scancode, int action, int mods)
+					   {
+						if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+							glfwSetWindowShouldClose(window, true);
+						if (key == GLFW_KEY_LEFT_CONTROL && action == GLFW_PRESS)
+							glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+						if (key == GLFW_KEY_LEFT_ALT && action == GLFW_PRESS)
+							glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); });
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	return window;
+}
+void initGLAD()
+{
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		glfwTerminate();
+		LOG_FATAL << "Failed to initialize GLAD";
+	}
+}
+void setDebug()
 {
 	GLint flags;
 	glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
