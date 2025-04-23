@@ -36,12 +36,36 @@ public:
         readKeyFrames(paiAnimation, model);
     }
     ~Animation() {}
+    Animation(const Animation &) = delete;
+    Animation &operator=(const Animation &) = delete;
+    Animation(Animation &&other)
+        : duration_(other.duration_),
+          ticksPerSecond_(other.ticksPerSecond_),
+          keyFrames_(std::move(other.keyFrames_)),
+          root_(std::move(other.root_))
+    {
+        other.ticksPerSecond_ = 0;
+        other.duration_ = 0;
+    }
+    Animation &operator=(Animation &&other)
+    {
+        if (this != &other)
+            Animation(std::move(other)).swap(*this);
+        return *this;
+    }
     inline KeyFrame &getBoneKeyFrame(const std::string &boneName) { return keyFrames_.at(boneName); }
     inline double getTicksPerSecond() const { return ticksPerSecond_; }
     inline double getDuration() const { return duration_; }
     inline const Hierarchy &getRootNode() const { return root_; }
 
 private:
+    void swap(Animation &other)
+    {
+        std::swap(duration_, other.duration_);
+        std::swap(ticksPerSecond_, other.ticksPerSecond_);
+        std::swap(keyFrames_, other.keyFrames_);
+        std::swap(root_, other.root_);
+    }
     void readKeyFrames(aiAnimation *paiAnimation, Model &model)
     {
         assert(paiAnimation != nullptr);
@@ -52,25 +76,25 @@ private:
             if (!model.getBoneLoaded().contains(boneName))
                 model.getBoneLoaded().emplace(boneName,
                                               BoneData{static_cast<int>(model.getBoneLoaded().size()), glm::mat4(1.0f)});
-            ///////////////////////////////////////////////////////////////////////////////
-            LOG_DEBUG << "本动画所有有关骨骼名称#" << boneName << " id#" << model.getBoneLoaded()[boneName].id << " offset#\n"
-                      << model.getBoneLoaded()[boneName].offset[0][0] << '#'
-                      << model.getBoneLoaded()[boneName].offset[1][0] << '#'
-                      << model.getBoneLoaded()[boneName].offset[2][0] << '#'
-                      << model.getBoneLoaded()[boneName].offset[3][0] << "#\n"
-                      << model.getBoneLoaded()[boneName].offset[0][1] << '#'
-                      << model.getBoneLoaded()[boneName].offset[1][1] << '#'
-                      << model.getBoneLoaded()[boneName].offset[2][1] << '#'
-                      << model.getBoneLoaded()[boneName].offset[3][1] << "#\n"
-                      << model.getBoneLoaded()[boneName].offset[0][2] << '#'
-                      << model.getBoneLoaded()[boneName].offset[1][2] << '#'
-                      << model.getBoneLoaded()[boneName].offset[2][2] << '#'
-                      << model.getBoneLoaded()[boneName].offset[3][2] << "#\n"
-                      << model.getBoneLoaded()[boneName].offset[0][3] << '#'
-                      << model.getBoneLoaded()[boneName].offset[1][3] << '#'
-                      << model.getBoneLoaded()[boneName].offset[2][3] << '#'
-                      << model.getBoneLoaded()[boneName].offset[3][3] << '#';
-            ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+            // LOG_DEBUG << "本动画所有有关骨骼名称#" << boneName << " id#" << model.getBoneLoaded()[boneName].id << " offset#\n"
+            //           << model.getBoneLoaded()[boneName].offset[0][0] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[1][0] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[2][0] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[3][0] << "#\n"
+            //           << model.getBoneLoaded()[boneName].offset[0][1] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[1][1] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[2][1] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[3][1] << "#\n"
+            //           << model.getBoneLoaded()[boneName].offset[0][2] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[1][2] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[2][2] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[3][2] << "#\n"
+            //           << model.getBoneLoaded()[boneName].offset[0][3] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[1][3] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[2][3] << '#'
+            //           << model.getBoneLoaded()[boneName].offset[3][3] << '#';
+            // ///////////////////////////////////////////////////////////////////////////////
             keyFrames_.emplace(boneName, KeyFrame(curBone));
         }
     }
@@ -78,7 +102,7 @@ private:
     {
         assert(paiNode != nullptr);
         node.name = paiNode->mName.C_Str();
-        node.transformation = Converter::convertMatrixToGLMFormat(paiNode->mTransformation);
+        node.transformation = Converter::convertMatrix2GLMFormat(paiNode->mTransformation);
         node.children.reserve(paiNode->mNumChildren);
         for (unsigned int i = 0; i < paiNode->mNumChildren; ++i)
         {

@@ -75,6 +75,21 @@
         "socket": "cpp",
         "timer": "cpp",
         "future": "cpp",
-        "latch": "cpp"
+        "latch": "cpp",
+        "chrono": "cpp",
+        "set": "cpp",
+        "shared_mutex": "cpp",
+        "csignal": "cpp",
+        "any": "cpp",
+        "strstream": "cpp",
+        "bitset": "cpp",
+        "cfenv": "cpp",
+        "complex": "cpp",
+        "source_location": "cpp",
+        "ranges": "cpp",
+        "stdfloat": "cpp",
+        "typeindex": "cpp",
+        "valarray": "cpp",
+        "*.ipp": "cpp"
     }
 }

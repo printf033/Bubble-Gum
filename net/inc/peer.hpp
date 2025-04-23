@@ -1,4 +1,4 @@
-#include "net.hpp"
+#include "netCommon.hpp"
 #include <string>
 #include <netinet/in.h>
 
@@ -49,10 +49,10 @@ class Peer_udp
 public:
     Peer_udp(const std::string &my_ip, const int my_port);
     ~Peer_udp();
-    void setRecvTimer(const int sec);
     int getFd() const;
 
-    bool send(const std::string &ur_ip, const int ur_port, const std::string &data);
+    void send(sockaddr_in &ur_sockaddr_in, const std::string &data);
+    void send(const std::string &ur_ip, const int ur_port, const std::string &data);
     std::string recv(sockaddr_in &ur_sockaddr_in);
 };
 

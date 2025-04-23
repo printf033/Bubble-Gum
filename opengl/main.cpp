@@ -12,6 +12,7 @@
 #include "camera.hpp"
 #include "animation.hpp"
 #include "animator.hpp"
+#include "player.hpp"
 
 #define SCR_WIDTH 1000
 #define SCR_HEIGHT 800
@@ -38,17 +39,13 @@ int main()
 	{
 		Shader shader(std::filesystem::current_path() / "../opengl/anim_vs.glsl",
 					  std::filesystem::current_path() / "../opengl/anim_fs.glsl");
-		Model model(std::filesystem::current_path() / "../resrc/obj/ring/ring.fbx");
+		Animator animator(std::filesystem::current_path() / "../resrc/obj/sphere/sphere.fbx");
+		animator.setCurAnimation("骨架|Action");
 		Shader shader1(std::filesystem::current_path() / "../opengl/static_vs.glsl",
 					   std::filesystem::current_path() / "../opengl/static_fs.glsl");
-		Model model1(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
-		// Shader shader2(std::filesystem::current_path() / "../opengl/static_vs.glsl",
-		// 			   std::filesystem::current_path() / "../opengl/static_fs.glsl");
-		// Model model2(std::filesystem::current_path() / "../resrc/obj/sphere/sphere.fbx");
-		// //////////////////////////////////////////////////////////////////////////////上菜
-		Animator animator(model);
-		animator.setCurAnimation("骨架|Action");
-		// //////////////////////////////////////////////////////////////////////////////
+		Model model(std::filesystem::current_path() / "../resrc/obj/cube/cube.fbx");
+		Player player;
+		Player player1;
 		double deltaTime = 0.0;
 		double lastTime = 0.0;
 		while (!glfwWindowShouldClose(window))
@@ -67,28 +64,26 @@ int main()
 				camera.processKeyboard(Movement::RIGHT, deltaTime);
 			//////////////////////////////////////////////////////////////////
 			if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-				model.processKeyboard(Movement::FORWARD, deltaTime);
+				player.processKeyboard(Movement::FORWARD, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-				model.processKeyboard(Movement::BACKWARD, deltaTime);
+				player.processKeyboard(Movement::BACKWARD, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-				model.processKeyboard(Movement::LEFT, deltaTime);
+				player.processKeyboard(Movement::LEFT, deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-				model.processKeyboard(Movement::RIGHT, deltaTime);
+				player.processKeyboard(Movement::RIGHT, deltaTime);
 			//////////////////////////////////////////////////////////////////
-			animator.updateAnimation(deltaTime);
 			glClearColor(0.0f, 0.7f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			shader.use();
-			shader.setMat4("model", model.getGlobalTrans());
+			shader.setMat4("model", player.getGlobalTrans());
 			shader.setMat4("view", camera.updateView());
 			shader.setMat4("projection", camera.updateProjection());
-			model.draw(shader);
+			animator.updateAnimation(shader, deltaTime);
 			shader1.use();
-			shader1.setMat4("model", model1.getGlobalTrans());
+			shader1.setMat4("model", player1.getGlobalTrans());
 			shader1.setMat4("view", camera.updateView());
 			shader1.setMat4("projection", camera.updateProjection());
-			model1.draw(shader);
-			// model2.draw(shader1);
+			model.draw(shader1);
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
@@ -99,7 +94,6 @@ int main()
 }
 void setLog()
 {
-	mylog::Logger::_setLogLevel(mylog::LogLevel::TRACE);
 	mylog::LogMessage::_setTerminalColorful();
 	// mylog::FileManager::_setBasename("log");
 	// mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
@@ -115,7 +109,7 @@ void initGLFW()
 }
 GLFWwindow *setWindow()
 {
-	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "BBG", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height)
 								   { glViewport(0, 0, width, height); });

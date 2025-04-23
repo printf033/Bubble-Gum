@@ -9,7 +9,7 @@ layout(location = 4) in vec3 bitangent;
 layout(location = 5) in ivec4 boneIds;
 layout(location = 6) in vec4 weights;
 
-layout(std430, binding = 0) buffer BoneTransforms { mat4 finalTransforms[]; };
+layout(std430) buffer BoneTrans { mat4 finalTransforms[]; };
 
 uniform mat4 projection;
 uniform mat4 view;

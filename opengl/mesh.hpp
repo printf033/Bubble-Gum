@@ -86,20 +86,7 @@ public:
     Mesh &operator=(Mesh &&other)
     {
         if (this != &other)
-        {
-            glDeleteVertexArrays(1, &VAO_);
-            glDeleteBuffers(1, &VBO_);
-            glDeleteBuffers(1, &EBO_);
-            vertices_ = std::move(other.vertices_);
-            indices_ = std::move(other.indices_);
-            textures_ = std::move(other.textures_);
-            VAO_ = other.VAO_;
-            VBO_ = other.VBO_;
-            EBO_ = other.EBO_;
-            other.VAO_ = 0;
-            other.VBO_ = 0;
-            other.EBO_ = 0;
-        }
+            Mesh(std::move(other)).swap(*this);
         return *this;
     }
     ~Mesh()
@@ -120,6 +107,17 @@ public:
         glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices_.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         glActiveTexture(GL_TEXTURE0);
+    }
+
+private:
+    void swap(Mesh &other)
+    {
+        std::swap(vertices_, other.vertices_);
+        std::swap(indices_, other.indices_);
+        std::swap(textures_, other.textures_);
+        std::swap(VAO_, other.VAO_);
+        std::swap(VBO_, other.VBO_);
+        std::swap(EBO_, other.EBO_);
     }
 };
 

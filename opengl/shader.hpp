@@ -14,7 +14,7 @@ class Shader
     unsigned int ID_;
 
 public:
-    Shader(std::filesystem::path &&vertexPath, std::filesystem::path &&fragmentPath)
+    Shader(const std::filesystem::path &vertexPath, const std::filesystem::path &fragmentPath)
     {
         unsigned int vertex = compileShader(vertexPath, GL_VERTEX_SHADER);
         unsigned int fragment = compileShader(fragmentPath, GL_FRAGMENT_SHADER);
@@ -61,14 +61,17 @@ public:
             glDeleteProgram(ID_);
         }
     }
-    ~Shader()
+    ~Shader() { glDeleteProgram(ID_); }
+    Shader(const Shader &) = delete;
+    Shader &operator=(const Shader &) = delete;
+    Shader(Shader &&other) : ID_(other.ID_) { other.ID_ = 0; }
+    Shader &operator=(Shader &&other)
     {
-        glDeleteProgram(ID_);
+        if (this != &other)
+            Shader(std::move(other)).swap(*this);
+        return *this;
     }
-    void use()
-    {
-        glUseProgram(ID_);
-    }
+    void use() { glUseProgram(ID_); }
     void setBool(const std::string &name, bool value) const
     {
         glUniform1i(glGetUniformLocation(ID_, name.c_str()), (int)value);
@@ -120,7 +123,8 @@ public:
     unsigned int getID() const { return ID_; }
 
 private:
-    unsigned int compileShader(std::filesystem::path &path, GLenum shaderType)
+    void swap(Shader &other) { std::swap(ID_, other.ID_); }
+    unsigned int compileShader(const std::filesystem::path &path, GLenum shaderType)
     {
         std::ifstream file(path, std::ios::binary);
         if (!file.is_open())

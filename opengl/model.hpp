@@ -9,7 +9,6 @@
 #include <stb/stb_image.h>
 #include "mesh.hpp"
 #include "converter.hpp"
-#include "movement.hpp"
 
 #ifndef MODEL_HPP
 #define MODEL_HPP
@@ -26,20 +25,10 @@ class Model
     std::vector<Texture> texturesLoaded_;
     std::filesystem::path path_;
     std::unordered_map<std::string, BoneData> boneLoaded_;
-    glm::mat4 GlobalTrans_;
-    glm::vec3 front_;
-    glm::vec3 up_;
-    glm::vec3 right_;
-    float movementSensitivity_;
 
 public:
-    Model(std::filesystem::path &&path)
-        : path_(path),
-          GlobalTrans_(glm::mat4(1.0f)),
-          front_(glm::vec3(0.0f, 0.0f, -1.0f)),
-          up_(glm::vec3(0.0f, 1.0f, 0.0f)),
-          right_(glm::vec3(1.0f, 0.0f, 0.0f)),
-          movementSensitivity_(1.5f)
+    Model(const std::filesystem::path &path)
+        : path_(path)
     {
         Assimp::Importer importer;
         const aiScene *paiScene = importer.ReadFile(path_,
@@ -58,6 +47,19 @@ public:
         for (auto &texture : texturesLoaded_)
             glDeleteTextures(1, &texture.id);
     }
+    Model(const Model &) = delete;
+    Model &operator=(const Model &) = delete;
+    Model(Model &&other)
+        : meshes_(std::move(other.meshes_)),
+          texturesLoaded_(std::move(other.texturesLoaded_)),
+          path_(std::move(other.path_)),
+          boneLoaded_(std::move(other.boneLoaded_)) {}
+    Model &operator=(Model &&other)
+    {
+        if (this != &other)
+            Model(std::move(other)).swap(*this);
+        return *this;
+    }
     void draw(Shader &shader) const
     {
         for (auto &mesh : meshes_)
@@ -65,30 +67,15 @@ public:
     }
     std::filesystem::path getPath() const { return path_; }
     std::unordered_map<std::string, BoneData> &getBoneLoaded() { return boneLoaded_; }
-    const glm::mat4 &getGlobalTrans() const { return GlobalTrans_; }
-    void processKeyboard(Movement direction, float deltaTime)
-    {
-        float rate = movementSensitivity_ * deltaTime;
-        switch (direction)
-        {
-        case Movement::FORWARD:
-            GlobalTrans_ = glm::translate(GlobalTrans_, front_ * rate);
-            break;
-        case Movement::BACKWARD:
-            GlobalTrans_ = glm::translate(GlobalTrans_, -front_ * rate);
-            break;
-        case Movement::LEFT:
-            GlobalTrans_ = glm::translate(GlobalTrans_, -right_ * rate);
-            break;
-        case Movement::RIGHT:
-            GlobalTrans_ = glm::translate(GlobalTrans_, right_ * rate);
-            break;
-        default:
-            break;
-        }
-    }
 
 private:
+    void swap(Model &other)
+    {
+        std::swap(meshes_, other.meshes_);
+        std::swap(texturesLoaded_, other.texturesLoaded_);
+        std::swap(path_, other.path_);
+        std::swap(boneLoaded_, other.boneLoaded_);
+    }
     void processNode(aiNode *paiNode, const aiScene *paiScene)
     {
         assert(paiNode != nullptr);
@@ -149,27 +136,27 @@ private:
             if (!boneLoaded_.contains(boneName))
                 boneLoaded_.emplace(boneName,
                                     BoneData{static_cast<int>(boneLoaded_.size()),
-                                             Converter::convertMatrixToGLMFormat(
+                                             Converter::convertMatrix2GLMFormat(
                                                  curBone->mOffsetMatrix)});
-            ///////////////////////////////////////////////////////////////////////////////
-            LOG_DEBUG << "mesh预加载骨骼名称#" << boneName << " id#" << boneLoaded_[boneName].id << " offset#\n"
-                      << boneLoaded_[boneName].offset[0][0] << '#'
-                      << boneLoaded_[boneName].offset[1][0] << '#'
-                      << boneLoaded_[boneName].offset[2][0] << '#'
-                      << boneLoaded_[boneName].offset[3][0] << "#\n"
-                      << boneLoaded_[boneName].offset[0][1] << '#'
-                      << boneLoaded_[boneName].offset[1][1] << '#'
-                      << boneLoaded_[boneName].offset[2][1] << '#'
-                      << boneLoaded_[boneName].offset[3][1] << "#\n"
-                      << boneLoaded_[boneName].offset[0][2] << '#'
-                      << boneLoaded_[boneName].offset[1][2] << '#'
-                      << boneLoaded_[boneName].offset[2][2] << '#'
-                      << boneLoaded_[boneName].offset[3][2] << "#\n"
-                      << boneLoaded_[boneName].offset[0][3] << '#'
-                      << boneLoaded_[boneName].offset[1][3] << '#'
-                      << boneLoaded_[boneName].offset[2][3] << '#'
-                      << boneLoaded_[boneName].offset[3][3] << '#';
-            ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+            // LOG_DEBUG << "mesh预加载骨骼名称#" << boneName << " id#" << boneLoaded_[boneName].id << " offset#\n"
+            //           << boneLoaded_[boneName].offset[0][0] << '#'
+            //           << boneLoaded_[boneName].offset[1][0] << '#'
+            //           << boneLoaded_[boneName].offset[2][0] << '#'
+            //           << boneLoaded_[boneName].offset[3][0] << "#\n"
+            //           << boneLoaded_[boneName].offset[0][1] << '#'
+            //           << boneLoaded_[boneName].offset[1][1] << '#'
+            //           << boneLoaded_[boneName].offset[2][1] << '#'
+            //           << boneLoaded_[boneName].offset[3][1] << "#\n"
+            //           << boneLoaded_[boneName].offset[0][2] << '#'
+            //           << boneLoaded_[boneName].offset[1][2] << '#'
+            //           << boneLoaded_[boneName].offset[2][2] << '#'
+            //           << boneLoaded_[boneName].offset[3][2] << "#\n"
+            //           << boneLoaded_[boneName].offset[0][3] << '#'
+            //           << boneLoaded_[boneName].offset[1][3] << '#'
+            //           << boneLoaded_[boneName].offset[2][3] << '#'
+            //           << boneLoaded_[boneName].offset[3][3] << '#';
+            // ///////////////////////////////////////////////////////////////////////////////
             for (unsigned int j = 0; j < curBone->mNumWeights; ++j)
             {
                 auto curWeight = curBone->mWeights[j];
