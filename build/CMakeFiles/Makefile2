@@ -63,8 +63,6 @@ CMAKE_BINARY_DIR = /home/aaa/code/myproj/Bubble-Gum/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/opengl.dir/all
-all: CMakeFiles/net.dir/all
 all: CMakeFiles/bbg.dir/all
 .PHONY : all
 
@@ -73,62 +71,8 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/opengl.dir/clean
-clean: CMakeFiles/net.dir/clean
 clean: CMakeFiles/bbg.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/opengl.dir
-
-# All Build rule for target.
-CMakeFiles/opengl.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=20,21,22,23,24,25,26,27,28 "Built target opengl"
-.PHONY : CMakeFiles/opengl.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/opengl.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/opengl.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 0
-.PHONY : CMakeFiles/opengl.dir/rule
-
-# Convenience name for target.
-opengl: CMakeFiles/opengl.dir/rule
-.PHONY : opengl
-
-# clean rule for target.
-CMakeFiles/opengl.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/clean
-.PHONY : CMakeFiles/opengl.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/net.dir
-
-# All Build rule for target.
-CMakeFiles/net.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19 "Built target net"
-.PHONY : CMakeFiles/net.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/net.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/net.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 0
-.PHONY : CMakeFiles/net.dir/rule
-
-# Convenience name for target.
-net: CMakeFiles/net.dir/rule
-.PHONY : net
-
-# clean rule for target.
-CMakeFiles/net.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/clean
-.PHONY : CMakeFiles/net.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/bbg.dir
@@ -137,12 +81,12 @@ CMakeFiles/net.dir/clean:
 CMakeFiles/bbg.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target bbg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target bbg"
 .PHONY : CMakeFiles/bbg.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bbg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/bbg.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles 0
 .PHONY : CMakeFiles/bbg.dir/rule

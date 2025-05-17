@@ -13,24 +13,11 @@ class Converter
 public:
 	static inline glm::mat4 convertMatrix2GLMFormat(const aiMatrix4x4 &src)
 	{
-		glm::mat4 dst;
-		dst[0][0] = src.a1;
-		dst[1][0] = src.a2;
-		dst[2][0] = src.a3;
-		dst[3][0] = src.a4;
-		dst[0][1] = src.b1;
-		dst[1][1] = src.b2;
-		dst[2][1] = src.b3;
-		dst[3][1] = src.b4;
-		dst[0][2] = src.c1;
-		dst[1][2] = src.c2;
-		dst[2][2] = src.c3;
-		dst[3][2] = src.c4;
-		dst[0][3] = src.d1;
-		dst[1][3] = src.d2;
-		dst[2][3] = src.d3;
-		dst[3][3] = src.d4;
-		return dst;
+		return glm::mat4(
+			src.a1, src.b1, src.c1, src.d1,
+			src.a2, src.b2, src.c2, src.d2,
+			src.a3, src.b3, src.c3, src.d3,
+			src.a4, src.b4, src.c4, src.d4);
 	}
 	static inline glm::vec3 getGLMVec(const aiVector3D &vec)
 	{

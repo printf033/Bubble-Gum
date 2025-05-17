@@ -1,5 +1,3 @@
-/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles/opengl.dir
-/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles/net.dir
 /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles/bbg.dir
 /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles/edit_cache.dir
 /home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles/rebuild_cache.dir

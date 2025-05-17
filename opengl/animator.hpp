@@ -83,22 +83,22 @@ public:
     void setCurAnimation(const std::string &animName)
     {
         if (!animations_.contains(animName))
-            LOG_ERROR << "Animation not found: " << animName;
+            std::cerr << "Animation not found: " << animName << std::endl;
         curAnim_ = &animations_.at(animName);
-        LOG_INFO << "Set animation: " << animName
-                 << ", duration: " << curAnim_->getDuration()
-                 << ", ticks/s: " << curAnim_->getTicksPerSecond();
+        std::clog << "Set animation: " << animName
+                  << ", duration: " << curAnim_->getDuration()
+                  << ", ticks/s: " << curAnim_->getTicksPerSecond() << std::endl;
     }
-    void updateAnimation(Shader &shader, double deltaTime)
+    void updateAnimation(Shader &shader, double deltaTime = 0.0)
     {
         assert(curAnim_ != nullptr);
         if (curTick_ < curAnim_->getDuration())
         {
-            calculateFinalTransform(curAnim_->getRootNode(), glm::mat4(1.0f));
+            calculateFinalTransform(getRootHierarchy(), glm::mat4(1.0f));
             curTick_ += deltaTime * curAnim_->getTicksPerSecond();
             GLuint blockIndex = glGetProgramResourceIndex(shader.getID(), GL_SHADER_STORAGE_BLOCK, "BoneTrans");
             if (blockIndex == GL_INVALID_INDEX)
-                LOG_ERROR << "Shader storage block BoneMatrices not found!";
+                std::cerr << "Shader storage block BoneMatrices not found!\n";
             else
                 glShaderStorageBlockBinding(shader.getID(), blockIndex, bindingIndex_);
             glBindBufferBase(GL_SHADER_STORAGE_BUFFER, bindingIndex_, SSBO_);
@@ -120,7 +120,10 @@ private:
     void readAnimations(const std::filesystem::path &path)
     {
         Assimp::Importer importer;
-        auto paiScene = importer.ReadFile(path, 0);
+        auto paiScene = importer.ReadFile(path,
+                                          aiProcess_LimitBoneWeights |
+                                              aiProcess_JoinIdenticalVertices |
+                                              aiProcess_ConvertToLeftHanded);
         assert(paiScene != nullptr &&
                !(paiScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE) &&
                paiScene->mRootNode != nullptr);
@@ -128,10 +131,12 @@ private:
         for (unsigned int i = 0; i < paiScene->mNumAnimations; ++i)
         {
             auto paiAnimation = paiScene->mAnimations[i];
-            animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, paiScene, *this));
-            LOG_INFO << paiAnimation->mName.C_Str(); // 报菜名
+            animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, *this));
+            ///////////////////////////////////////////////////////////////
+            std::clog << paiAnimation->mName.C_Str() << std::endl; // 报菜名
+            ///////////////////////////////////////////////////////////////
         }
-        finalTransforms_.resize(getBoneLoaded().size(), glm::mat4(1.0f));
+        finalTransforms_.resize(getBonesLoaded().size(), glm::mat4(1.0f));
         glGenBuffers(1, &SSBO_);
         glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_);
         glBufferData(GL_SHADER_STORAGE_BUFFER,
@@ -140,36 +145,13 @@ private:
                      GL_DYNAMIC_DRAW);
         bindingIndex_ = nextBindingPoint_++;
     }
-    void calculateFinalTransform(const Hierarchy &node, glm::mat4 parentTransform)
+    void calculateFinalTransform(const Hierarchy *node, glm::mat4 parentTransform)
     {
-        //////////////////////////////////////////////////////////////////////改正
-        if (getBoneLoaded().contains(node.name))
-        {
-            parentTransform *= curAnim_->getBoneKeyFrame(node.name).interpolate(curTick_);
-            finalTransforms_[getBoneLoaded()[node.name].id] = parentTransform * getBoneLoaded()[node.name].offset;
-            // //////////////////////////////////////////////////////////
-            // LOG_DEBUG << "当前节点名称#" << node.name
-            //           << " id#" << getBoneLoaded()[node.name].id
-            //           << " 变换矩阵#\n"
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][0][0] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][1][0] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][2][0] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][3][0] << "#\n"
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][0][1] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][1][1] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][2][1] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][3][1] << "#\n"
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][0][2] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][1][2] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][2][2] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][3][2] << "#\n"
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][0][3] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][1][3] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][2][3] << '#'
-            //           << finalTransforms_[getBoneLoaded()[node.name].id][3][3] << '#';
-            // //////////////////////////////////////////////////////////
-        }
-        for (const auto &child : node.children)
+        assert(node != nullptr);
+        if (curAnim_ != nullptr && curAnim_->getKeyFrames().contains(node->name))
+            parentTransform *= curAnim_->getKeyFrames().at(node->name).interpolate(curTick_);
+        finalTransforms_[node->id] = parentTransform * node->offset;
+        for (const auto &child : node->children)
             calculateFinalTransform(child, parentTransform);
     }
 };

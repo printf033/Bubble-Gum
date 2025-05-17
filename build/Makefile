@@ -117,32 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named opengl
-
-# Build rule for target.
-opengl: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 opengl
-.PHONY : opengl
-
-# fast build rule for target.
-opengl/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/build
-.PHONY : opengl/fast
-
-#=============================================================================
-# Target rules for targets named net
-
-# Build rule for target.
-net: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 net
-.PHONY : net
-
-# fast build rule for target.
-net/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/build
-.PHONY : net/fast
-
-#=============================================================================
 # Target rules for targets named bbg
 
 # Build rule for target.
@@ -184,7 +158,6 @@ glad/src/glad.o: glad/src/glad.c.o
 
 # target to build an object file
 glad/src/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/glad/src/glad.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/glad/src/glad.c.o
 .PHONY : glad/src/glad.c.o
 
@@ -193,7 +166,6 @@ glad/src/glad.i: glad/src/glad.c.i
 
 # target to preprocess a source file
 glad/src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/glad/src/glad.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/glad/src/glad.c.i
 .PHONY : glad/src/glad.c.i
 
@@ -202,7 +174,6 @@ glad/src/glad.s: glad/src/glad.c.s
 
 # target to generate assembly for a file
 glad/src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/glad/src/glad.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/glad/src/glad.c.s
 .PHONY : glad/src/glad.c.s
 
@@ -211,8 +182,6 @@ mylog/src/AsyncHelper.o: mylog/src/AsyncHelper.cpp.o
 
 # target to build an object file
 mylog/src/AsyncHelper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/AsyncHelper.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/AsyncHelper.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o
 .PHONY : mylog/src/AsyncHelper.cpp.o
 
@@ -221,8 +190,6 @@ mylog/src/AsyncHelper.i: mylog/src/AsyncHelper.cpp.i
 
 # target to preprocess a source file
 mylog/src/AsyncHelper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/AsyncHelper.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/AsyncHelper.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.i
 .PHONY : mylog/src/AsyncHelper.cpp.i
 
@@ -231,8 +198,6 @@ mylog/src/AsyncHelper.s: mylog/src/AsyncHelper.cpp.s
 
 # target to generate assembly for a file
 mylog/src/AsyncHelper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/AsyncHelper.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/AsyncHelper.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.s
 .PHONY : mylog/src/AsyncHelper.cpp.s
 
@@ -241,8 +206,6 @@ mylog/src/FileAppender.o: mylog/src/FileAppender.cpp.o
 
 # target to build an object file
 mylog/src/FileAppender.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileAppender.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileAppender.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o
 .PHONY : mylog/src/FileAppender.cpp.o
 
@@ -251,8 +214,6 @@ mylog/src/FileAppender.i: mylog/src/FileAppender.cpp.i
 
 # target to preprocess a source file
 mylog/src/FileAppender.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileAppender.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileAppender.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.i
 .PHONY : mylog/src/FileAppender.cpp.i
 
@@ -261,8 +222,6 @@ mylog/src/FileAppender.s: mylog/src/FileAppender.cpp.s
 
 # target to generate assembly for a file
 mylog/src/FileAppender.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileAppender.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileAppender.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.s
 .PHONY : mylog/src/FileAppender.cpp.s
 
@@ -271,8 +230,6 @@ mylog/src/FileManager.o: mylog/src/FileManager.cpp.o
 
 # target to build an object file
 mylog/src/FileManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileManager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileManager.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o
 .PHONY : mylog/src/FileManager.cpp.o
 
@@ -281,8 +238,6 @@ mylog/src/FileManager.i: mylog/src/FileManager.cpp.i
 
 # target to preprocess a source file
 mylog/src/FileManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileManager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileManager.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.i
 .PHONY : mylog/src/FileManager.cpp.i
 
@@ -291,8 +246,6 @@ mylog/src/FileManager.s: mylog/src/FileManager.cpp.s
 
 # target to generate assembly for a file
 mylog/src/FileManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/FileManager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/FileManager.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.s
 .PHONY : mylog/src/FileManager.cpp.s
 
@@ -301,8 +254,6 @@ mylog/src/LogMessage.o: mylog/src/LogMessage.cpp.o
 
 # target to build an object file
 mylog/src/LogMessage.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/LogMessage.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/LogMessage.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o
 .PHONY : mylog/src/LogMessage.cpp.o
 
@@ -311,8 +262,6 @@ mylog/src/LogMessage.i: mylog/src/LogMessage.cpp.i
 
 # target to preprocess a source file
 mylog/src/LogMessage.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/LogMessage.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/LogMessage.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.i
 .PHONY : mylog/src/LogMessage.cpp.i
 
@@ -321,8 +270,6 @@ mylog/src/LogMessage.s: mylog/src/LogMessage.cpp.s
 
 # target to generate assembly for a file
 mylog/src/LogMessage.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/LogMessage.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/LogMessage.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.s
 .PHONY : mylog/src/LogMessage.cpp.s
 
@@ -331,8 +278,6 @@ mylog/src/Logger.o: mylog/src/Logger.cpp.o
 
 # target to build an object file
 mylog/src/Logger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Logger.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Logger.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o
 .PHONY : mylog/src/Logger.cpp.o
 
@@ -341,8 +286,6 @@ mylog/src/Logger.i: mylog/src/Logger.cpp.i
 
 # target to preprocess a source file
 mylog/src/Logger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Logger.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Logger.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.i
 .PHONY : mylog/src/Logger.cpp.i
 
@@ -351,8 +294,6 @@ mylog/src/Logger.s: mylog/src/Logger.cpp.s
 
 # target to generate assembly for a file
 mylog/src/Logger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Logger.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Logger.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.s
 .PHONY : mylog/src/Logger.cpp.s
 
@@ -361,8 +302,6 @@ mylog/src/Timestamp.o: mylog/src/Timestamp.cpp.o
 
 # target to build an object file
 mylog/src/Timestamp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Timestamp.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Timestamp.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o
 .PHONY : mylog/src/Timestamp.cpp.o
 
@@ -371,8 +310,6 @@ mylog/src/Timestamp.i: mylog/src/Timestamp.cpp.i
 
 # target to preprocess a source file
 mylog/src/Timestamp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Timestamp.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Timestamp.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.i
 .PHONY : mylog/src/Timestamp.cpp.i
 
@@ -381,85 +318,8 @@ mylog/src/Timestamp.s: mylog/src/Timestamp.cpp.s
 
 # target to generate assembly for a file
 mylog/src/Timestamp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/mylog/src/Timestamp.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/mylog/src/Timestamp.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.s
 .PHONY : mylog/src/Timestamp.cpp.s
-
-net/main.o: net/main.cpp.o
-.PHONY : net/main.o
-
-# target to build an object file
-net/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/main.cpp.o
-.PHONY : net/main.cpp.o
-
-net/main.i: net/main.cpp.i
-.PHONY : net/main.i
-
-# target to preprocess a source file
-net/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/main.cpp.i
-.PHONY : net/main.cpp.i
-
-net/main.s: net/main.cpp.s
-.PHONY : net/main.s
-
-# target to generate assembly for a file
-net/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/main.cpp.s
-.PHONY : net/main.cpp.s
-
-net/src/peer.o: net/src/peer.cpp.o
-.PHONY : net/src/peer.o
-
-# target to build an object file
-net/src/peer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/src/peer.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/net/src/peer.cpp.o
-.PHONY : net/src/peer.cpp.o
-
-net/src/peer.i: net/src/peer.cpp.i
-.PHONY : net/src/peer.i
-
-# target to preprocess a source file
-net/src/peer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/src/peer.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/net/src/peer.cpp.i
-.PHONY : net/src/peer.cpp.i
-
-net/src/peer.s: net/src/peer.cpp.s
-.PHONY : net/src/peer.s
-
-# target to generate assembly for a file
-net/src/peer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/net/src/peer.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/net/src/peer.cpp.s
-.PHONY : net/src/peer.cpp.s
-
-opengl/main.o: opengl/main.cpp.o
-.PHONY : opengl/main.o
-
-# target to build an object file
-opengl/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/opengl/main.cpp.o
-.PHONY : opengl/main.cpp.o
-
-opengl/main.i: opengl/main.cpp.i
-.PHONY : opengl/main.i
-
-# target to preprocess a source file
-opengl/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/opengl/main.cpp.i
-.PHONY : opengl/main.cpp.i
-
-opengl/main.s: opengl/main.cpp.s
-.PHONY : opengl/main.s
-
-# target to generate assembly for a file
-opengl/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/opengl.dir/build.make CMakeFiles/opengl.dir/opengl/main.cpp.s
-.PHONY : opengl/main.cpp.s
 
 # Help Target
 help:
@@ -470,8 +330,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bbg"
-	@echo "... net"
-	@echo "... opengl"
 	@echo "... bbg/main.o"
 	@echo "... bbg/main.i"
 	@echo "... bbg/main.s"
@@ -496,15 +354,6 @@ help:
 	@echo "... mylog/src/Timestamp.o"
 	@echo "... mylog/src/Timestamp.i"
 	@echo "... mylog/src/Timestamp.s"
-	@echo "... net/main.o"
-	@echo "... net/main.i"
-	@echo "... net/main.s"
-	@echo "... net/src/peer.o"
-	@echo "... net/src/peer.i"
-	@echo "... net/src/peer.s"
-	@echo "... opengl/main.o"
-	@echo "... opengl/main.i"
-	@echo "... opengl/main.s"
 .PHONY : help
 
 

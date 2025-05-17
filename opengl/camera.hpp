@@ -23,7 +23,7 @@ class Camera
 
 public:
     // +X为右 +Y为上 -Z为前
-    Camera(float aspect, glm::vec3 position = glm::vec3(0.0f, 0.0f, 5.0f))
+    Camera(float aspect, glm::vec3 position)
         : position_(position),
           front_(glm::vec3(0.0f, 0.0f, -1.0f)),
           up_(glm::vec3(0.0f, 1.0f, 0.0f)),
@@ -72,7 +72,7 @@ public:
     {
         return glm::perspective(glm::radians(fovy_), aspect_, 0.1f, 100.0f);
     }
-    void processKeyboard(Movement direction, float deltaTime)
+    void processKeyboard_GodMode(Movement direction, float deltaTime)
     {
         float rate = movementSensitivity_ * deltaTime;
         switch (direction)
@@ -88,6 +88,36 @@ public:
             break;
         case Movement::RIGHT:
             position_ += right_ * rate;
+            break;
+        default:
+            break;
+        }
+    }
+    void processKeyboard(Movement direction, float deltaTime)
+    {
+        float rate = movementSensitivity_ * deltaTime;
+        glm::vec3 final(0.0f, 0.0f, 0.0f);
+        switch (direction)
+        {
+        case Movement::FORWARD:
+            final.x = front_.x;
+            final.z = front_.z;
+            position_ += final * rate;
+            break;
+        case Movement::BACKWARD:
+            final.x = front_.x;
+            final.z = front_.z;
+            position_ -= final * rate;
+            break;
+        case Movement::LEFT:
+            final.x = right_.x;
+            final.z = right_.z;
+            position_ -= final * rate;
+            break;
+        case Movement::RIGHT:
+            final.x = right_.x;
+            final.z = right_.z;
+            position_ += final * rate;
             break;
         default:
             break;

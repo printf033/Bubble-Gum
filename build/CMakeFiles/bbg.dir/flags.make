@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/net/inc -I/home/aaa/code/myproj/Bubble-Gum/thr
+C_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr
 
 C_FLAGS = 
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/net/inc -I/home/aaa/code/myproj/Bubble-Gum/thr
+CXX_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr
 
 CXX_FLAGS =  -g -std=c++20 
 

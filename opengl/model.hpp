@@ -13,22 +13,26 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
-struct BoneData
+struct Hierarchy
 {
-    int id;
-    glm::mat4 offset;
+    int id = -1;
+    glm::mat4 offset = glm::mat4(1.0f);
+    std::string name;
+    std::vector<Hierarchy *> children;
 };
 
 class Model
 {
+    std::filesystem::path path_;
+    Hierarchy *root_;
     std::vector<Mesh> meshes_;
     std::vector<Texture> texturesLoaded_;
-    std::filesystem::path path_;
-    std::unordered_map<std::string, BoneData> boneLoaded_;
+    std::unordered_map<std::string, Hierarchy> bonesLoaded_;
 
 public:
     Model(const std::filesystem::path &path)
-        : path_(path)
+        : path_(path),
+          root_(nullptr)
     {
         Assimp::Importer importer;
         const aiScene *paiScene = importer.ReadFile(path_,
@@ -36,57 +40,77 @@ public:
                                                         aiProcess_Triangulate |
                                                         aiProcess_GenSmoothNormals |
                                                         aiProcess_LimitBoneWeights |
-                                                        aiProcess_FlipUVs);
+                                                        aiProcess_JoinIdenticalVertices |
+                                                        aiProcess_ConvertToLeftHanded);
         assert(paiScene != nullptr &&
                !(paiScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE) &&
                paiScene->mRootNode != nullptr);
-        processNode(paiScene->mRootNode, paiScene);
+        processNode(root_, paiScene->mRootNode, paiScene);
     }
     ~Model()
     {
+        root_ = nullptr;
         for (auto &texture : texturesLoaded_)
             glDeleteTextures(1, &texture.id);
     }
     Model(const Model &) = delete;
     Model &operator=(const Model &) = delete;
     Model(Model &&other)
-        : meshes_(std::move(other.meshes_)),
+        : path_(std::move(other.path_)),
+          root_(other.root_),
+          meshes_(std::move(other.meshes_)),
           texturesLoaded_(std::move(other.texturesLoaded_)),
-          path_(std::move(other.path_)),
-          boneLoaded_(std::move(other.boneLoaded_)) {}
+          bonesLoaded_(std::move(other.bonesLoaded_))
+    {
+        other.root_ = nullptr;
+    }
     Model &operator=(Model &&other)
     {
         if (this != &other)
             Model(std::move(other)).swap(*this);
         return *this;
     }
+    inline std::filesystem::path getPath() const { return path_; }
+    inline std::unordered_map<std::string, Hierarchy> &getBonesLoaded() { return bonesLoaded_; }
+    inline Hierarchy *getRootHierarchy() const { return root_; }
     void draw(Shader &shader) const
     {
         for (auto &mesh : meshes_)
             mesh.draw(shader);
     }
-    std::filesystem::path getPath() const { return path_; }
-    std::unordered_map<std::string, BoneData> &getBoneLoaded() { return boneLoaded_; }
 
 private:
     void swap(Model &other)
     {
+        std::swap(path_, other.path_);
+        std::swap(root_, other.root_);
         std::swap(meshes_, other.meshes_);
         std::swap(texturesLoaded_, other.texturesLoaded_);
-        std::swap(path_, other.path_);
-        std::swap(boneLoaded_, other.boneLoaded_);
+        std::swap(bonesLoaded_, other.bonesLoaded_);
     }
-    void processNode(aiNode *paiNode, const aiScene *paiScene)
+    void processNode(Hierarchy *&node, aiNode *paiNode, const aiScene *paiScene)
     {
         assert(paiNode != nullptr);
         assert(paiScene != nullptr);
+        std::string nodeName(paiNode->mName.C_Str());
+        if (!bonesLoaded_.contains(nodeName))
+            bonesLoaded_.emplace(nodeName,
+                                 Hierarchy{static_cast<int>(bonesLoaded_.size()),
+                                           Converter::convertMatrix2GLMFormat(paiNode->mTransformation),
+                                           nodeName});
+        node = &bonesLoaded_.at(nodeName);
         for (unsigned int i = 0; i < paiNode->mNumMeshes; ++i)
         {
             aiMesh *paiMesh = paiScene->mMeshes[paiNode->mMeshes[i]];
             meshes_.push_back(processMesh(paiMesh, paiScene));
         }
+        bonesLoaded_.at(nodeName).children.reserve(paiNode->mNumChildren);
         for (unsigned int i = 0; i < paiNode->mNumChildren; ++i)
-            processNode(paiNode->mChildren[i], paiScene);
+        {
+            Hierarchy *child = nullptr;
+            processNode(child, paiNode->mChildren[i], paiScene);
+            bonesLoaded_.at(nodeName).children.push_back(child);
+        }
     }
     Mesh processMesh(aiMesh *paiMesh, const aiScene *paiScene)
     {
@@ -133,30 +157,11 @@ private:
         {
             auto curBone = paiMesh->mBones[i];
             std::string boneName(curBone->mName.C_Str());
-            if (!boneLoaded_.contains(boneName))
-                boneLoaded_.emplace(boneName,
-                                    BoneData{static_cast<int>(boneLoaded_.size()),
-                                             Converter::convertMatrix2GLMFormat(
-                                                 curBone->mOffsetMatrix)});
-            // ///////////////////////////////////////////////////////////////////////////////
-            // LOG_DEBUG << "mesh预加载骨骼名称#" << boneName << " id#" << boneLoaded_[boneName].id << " offset#\n"
-            //           << boneLoaded_[boneName].offset[0][0] << '#'
-            //           << boneLoaded_[boneName].offset[1][0] << '#'
-            //           << boneLoaded_[boneName].offset[2][0] << '#'
-            //           << boneLoaded_[boneName].offset[3][0] << "#\n"
-            //           << boneLoaded_[boneName].offset[0][1] << '#'
-            //           << boneLoaded_[boneName].offset[1][1] << '#'
-            //           << boneLoaded_[boneName].offset[2][1] << '#'
-            //           << boneLoaded_[boneName].offset[3][1] << "#\n"
-            //           << boneLoaded_[boneName].offset[0][2] << '#'
-            //           << boneLoaded_[boneName].offset[1][2] << '#'
-            //           << boneLoaded_[boneName].offset[2][2] << '#'
-            //           << boneLoaded_[boneName].offset[3][2] << "#\n"
-            //           << boneLoaded_[boneName].offset[0][3] << '#'
-            //           << boneLoaded_[boneName].offset[1][3] << '#'
-            //           << boneLoaded_[boneName].offset[2][3] << '#'
-            //           << boneLoaded_[boneName].offset[3][3] << '#';
-            // ///////////////////////////////////////////////////////////////////////////////
+            if (!bonesLoaded_.contains(boneName))
+                bonesLoaded_.emplace(boneName,
+                                     Hierarchy{static_cast<int>(bonesLoaded_.size()),
+                                               Converter::convertMatrix2GLMFormat(curBone->mOffsetMatrix),
+                                               boneName});
             for (unsigned int j = 0; j < curBone->mNumWeights; ++j)
             {
                 auto curWeight = curBone->mWeights[j];
@@ -164,7 +169,7 @@ private:
                 for (int k = 0; k < MAX_BONE_INFLUENCE; ++k)
                     if (vertices[vertexId].boneIDs[k] == -1)
                     {
-                        vertices[vertexId].boneIDs[k] = boneLoaded_[boneName].id;
+                        vertices[vertexId].boneIDs[k] = bonesLoaded_[boneName].id;
                         vertices[vertexId].weights[k] = curWeight.mWeight;
                         break;
                     }

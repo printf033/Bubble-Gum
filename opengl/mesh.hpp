@@ -103,6 +103,11 @@ public:
             glUniform1i(glGetUniformLocation(shader.getID(), textures_[i].type.c_str()), i);
             glBindTexture(GL_TEXTURE_2D, textures_[i].id);
         }
+        // //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // for (auto &it : vertices_)
+        //     std::cerr << "x" << it.position.x << "y" << it.position.y << "z" << it.position.z << "\n";
+        // std::cerr << "\n";
+        // //////////////////////////////////////////////////////////////////////////////////////////////////////
         glBindVertexArray(VAO_);
         glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices_.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);

@@ -46,12 +46,6 @@ public:
             aiVector3D pos = channel->mPositionKeys[i].mValue;
             double tickStamp = channel->mPositionKeys[i].mTime;
             positions_.push_back({Converter::getGLMVec(pos), tickStamp});
-            // ///////////////////////////////////////////////////////////////////////////////////
-            // LOG_DEBUG << i << " tickStamp#" << positions_.back().tickStamp << " pos#\n"
-            //           << positions_.back().position[0] << '#'
-            //           << positions_.back().position[1] << '#'
-            //           << positions_.back().position[2] << '#';
-            // ///////////////////////////////////////////////////////////////////////////////////
         }
         rotations_.reserve(channel->mNumRotationKeys);
         for (unsigned int i = 0; i < channel->mNumRotationKeys; ++i)
@@ -59,13 +53,6 @@ public:
             aiQuaternion ort = channel->mRotationKeys[i].mValue;
             double tickStamp = channel->mRotationKeys[i].mTime;
             rotations_.push_back({Converter::getGLMQuat(ort), tickStamp});
-            // ///////////////////////////////////////////////////////////////////////////////////
-            // LOG_DEBUG << i << " tickStamp#" << rotations_.back().tickStamp << " ort#\n"
-            //           << rotations_.back().orientation[0] << '#'
-            //           << rotations_.back().orientation[1] << '#'
-            //           << rotations_.back().orientation[2] << '#'
-            //           << rotations_.back().orientation[3] << '#';
-            // ///////////////////////////////////////////////////////////////////////////////////
         }
         scales_.reserve(channel->mNumScalingKeys);
         for (unsigned int i = 0; i < channel->mNumScalingKeys; ++i)
@@ -73,12 +60,6 @@ public:
             aiVector3D scl = channel->mScalingKeys[i].mValue;
             double tickStamp = channel->mScalingKeys[i].mTime;
             scales_.push_back({Converter::getGLMVec(scl), tickStamp});
-            // ///////////////////////////////////////////////////////////////////////////////////
-            // LOG_DEBUG << i << " tickStamp#" << scales_.back().tickStamp << " scl#\n"
-            //           << scales_.back().scale[0] << '#'
-            //           << scales_.back().scale[1] << '#'
-            //           << scales_.back().scale[2] << '#';
-            // ///////////////////////////////////////////////////////////////////////////////////
         }
     }
     ~KeyFrame() {}
@@ -111,25 +92,6 @@ public:
             transformation *= interpolateRotation(curTick);
         if (!positions_.empty())
             transformation *= interpolatePosition(curTick);
-        // ///////////////////////////////////////////////////////////////////////////////////
-        // LOG_DEBUG << "模型变换矩阵#\n"
-        //           << transformation[0][0] << '#'
-        //           << transformation[1][0] << '#'
-        //           << transformation[2][0] << '#'
-        //           << transformation[3][0] << "#\n"
-        //           << transformation[0][1] << '#'
-        //           << transformation[1][1] << '#'
-        //           << transformation[2][1] << '#'
-        //           << transformation[3][1] << "#\n"
-        //           << transformation[0][2] << '#'
-        //           << transformation[1][2] << '#'
-        //           << transformation[2][2] << '#'
-        //           << transformation[3][2] << "#\n"
-        //           << transformation[0][3] << '#'
-        //           << transformation[1][3] << '#'
-        //           << transformation[2][3] << '#'
-        //           << transformation[3][3] << '#';
-        // ///////////////////////////////////////////////////////////////////////////////////
         return transformation;
     }
 
