@@ -36,6 +36,10 @@ public:
     Peer_cli()
         : ur_fd_(-1), is_conn_(false) {}
     ~Peer_cli() { disconn(); }
+    Peer_cli(const Peer_cli &) = delete;
+    Peer_cli &operator=(const Peer_cli &) = delete;
+    Peer_cli(Peer_cli &&) = delete;
+    Peer_cli &operator=(Peer_cli &&) = delete;
     void setRecvTimer(const int sec = CLINET_RECV_TIMEOUT)
     {
         struct timeval tv_struc;
@@ -155,6 +159,10 @@ public:
             throw std::runtime_error("fail to listen");
     }
     ~Peer_ser() { close(my_fd_); }
+    Peer_ser(const Peer_ser &) = delete;
+    Peer_ser &operator=(const Peer_ser &) = delete;
+    Peer_ser(Peer_ser &&) = delete;
+    Peer_ser &operator=(Peer_ser &&) = delete;
     int getFd() const { return my_fd_; }
     int accept()
     {
@@ -244,6 +252,10 @@ public:
         setsockopt(my_fd_, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable));
     }
     ~Peer_udp() { close(my_fd_); }
+    Peer_udp(const Peer_udp &) = delete;
+    Peer_udp &operator=(const Peer_udp &) = delete;
+    Peer_udp(Peer_udp &&) = delete;
+    Peer_udp &operator=(Peer_udp &&) = delete;
     int getFd() const { return my_fd_; }
     void send(sockaddr_in &ur_sockaddr_in, const std::string &data)
     {

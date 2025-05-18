@@ -6,7 +6,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <jsoncpp/json/json.h>
-#include "Logger.hpp"
+#include "logger.hpp"
 #include "reactor.hpp"
 #include "shader.hpp"
 #include "model.hpp"
@@ -27,10 +27,9 @@ SyncQueue<NetPlayer> qu;
 
 int main()
 {
-    mylog::LogMessage::_setTerminalColorful();
-    // mylog::FileManager::_setBasename("log");
-    // mylog::Logger::_setOutputFunc(mylog::AsyncHelper::_outputFunc_async_file);
-    // mylog::Logger::_setFlushFunc(mylog::AsyncHelper::_flushFunc_async_file);
+    mylog::LogMessage::setTerminalVivid();
+    // mylog::Logger::setOutputFunc(mylog::AsyncHelper::outputFunc_async_file);
+    // mylog::Logger::setFlushFunc(mylog::AsyncHelper::flushFunc_async_file);
 
     Reactor reactor("0.0.0.0", 6664);
     std::jthread t1([&]
@@ -79,6 +78,7 @@ int main()
         animators.emplace("sphere", Animator(std::filesystem::current_path() / "../resources/objects/sphere/sphere.fbx", "骨架|Action"));
         animators.emplace("ring", Animator(std::filesystem::current_path() / "../resources/objects/ring/ring.fbx", "骨架|Action"));
         animators.emplace("cube", Animator(std::filesystem::current_path() / "../resources/objects/cube/cube.fbx", "骨架|Action"));
+        animators.emplace("monkey", Animator(std::filesystem::current_path() / "../resources/objects/monkey/monkey.fbx"));
         double deltaTime = 0.0;
         double lastTime = 0.0;
         while (!glfwWindowShouldClose(window))
@@ -101,11 +101,16 @@ int main()
             shaders.at("modl").setMat4("view", player.updateView());
             shaders.at("modl").setMat4("projection", player.updateProjection());
             animators.at("terrain").draw(shaders.at("modl"));
-            shaders.at("anim").use();
-            shaders.at("anim").setMat4("model", player.getGlobalTrans());
-            shaders.at("anim").setMat4("view", player.updateView());
-            shaders.at("anim").setMat4("projection", player.updateProjection());
-            animators.at("sphere").updateAnimation(shaders.at("anim"), deltaTime);
+            // shaders.at("anim").use();
+            // shaders.at("anim").setMat4("model", player.getGlobalTrans());
+            // shaders.at("anim").setMat4("view", player.updateView());
+            // shaders.at("anim").setMat4("projection", player.updateProjection());
+            // animators.at("sphere").updateAnimation(shaders.at("anim"), deltaTime);
+            shaders.at("modl").use();
+            shaders.at("modl").setMat4("model", glm::mat4(1.0f));
+            shaders.at("modl").setMat4("view", player.updateView());
+            shaders.at("modl").setMat4("projection", player.updateProjection());
+            animators.at("monkey").draw(shaders.at("modl"));
             while (!qu.empty_r())
             {
                 NetPlayer other;

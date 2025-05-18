@@ -83,89 +83,89 @@ CMakeFiles/bbg.dir/bbg/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/bbg/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/bbg/main.cpp -o CMakeFiles/bbg.dir/bbg/main.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/AsyncHelper.cpp
-CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/AsyncHelper.cpp
+CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/asyncHelper.cpp
+CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/asyncHelper.cpp
 
-CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/AsyncHelper.cpp > CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.i
+CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/asyncHelper.cpp > CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/AsyncHelper.cpp -o CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.s
+CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/asyncHelper.cpp -o CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileAppender.cpp
-CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileAppender.cpp
+CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileAppender.cpp
+CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileAppender.cpp
 
-CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileAppender.cpp > CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.i
+CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileAppender.cpp > CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileAppender.cpp -o CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.s
+CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileAppender.cpp -o CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileManager.cpp
-CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileManager.cpp
+CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileManager.cpp
+CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileManager.cpp
 
-CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileManager.cpp > CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.i
+CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileManager.cpp > CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/FileManager.cpp -o CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.s
+CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/fileManager.cpp -o CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/LogMessage.cpp
-CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/LogMessage.cpp
+CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/logMessage.cpp
+CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/logMessage.cpp
 
-CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/LogMessage.cpp > CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.i
+CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/logMessage.cpp > CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/LogMessage.cpp -o CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.s
+CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/logMessage.cpp -o CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/Logger.cpp
-CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/Logger.cpp
+CMakeFiles/bbg.dir/mylog/src/logger.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/logger.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/logger.cpp
+CMakeFiles/bbg.dir/mylog/src/logger.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/bbg.dir/mylog/src/logger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/logger.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/logger.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/logger.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/logger.cpp
 
-CMakeFiles/bbg.dir/mylog/src/Logger.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/Logger.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/Logger.cpp > CMakeFiles/bbg.dir/mylog/src/Logger.cpp.i
+CMakeFiles/bbg.dir/mylog/src/logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/logger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/logger.cpp > CMakeFiles/bbg.dir/mylog/src/logger.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/Logger.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/Logger.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/Logger.cpp -o CMakeFiles/bbg.dir/mylog/src/Logger.cpp.s
+CMakeFiles/bbg.dir/mylog/src/logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/logger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/logger.cpp -o CMakeFiles/bbg.dir/mylog/src/logger.cpp.s
 
-CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o: CMakeFiles/bbg.dir/flags.make
-CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/Timestamp.cpp
-CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/Timestamp.cpp
+CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: CMakeFiles/bbg.dir/flags.make
+CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/mylog/src/timestamp.cpp
+CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: CMakeFiles/bbg.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aaa/code/myproj/Bubble-Gum/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o -MF CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o.d -o CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o -c /home/aaa/code/myproj/Bubble-Gum/mylog/src/timestamp.cpp
 
-CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/Timestamp.cpp > CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.i
+CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aaa/code/myproj/Bubble-Gum/mylog/src/timestamp.cpp > CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.i
 
-CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/Timestamp.cpp -o CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.s
+CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aaa/code/myproj/Bubble-Gum/mylog/src/timestamp.cpp -o CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.s
 
 CMakeFiles/bbg.dir/glad/src/glad.c.o: CMakeFiles/bbg.dir/flags.make
 CMakeFiles/bbg.dir/glad/src/glad.c.o: /home/aaa/code/myproj/Bubble-Gum/glad/src/glad.c
@@ -184,24 +184,24 @@ CMakeFiles/bbg.dir/glad/src/glad.c.s: cmake_force
 # Object files for target bbg
 bbg_OBJECTS = \
 "CMakeFiles/bbg.dir/bbg/main.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o" \
-"CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/logger.cpp.o" \
+"CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o" \
 "CMakeFiles/bbg.dir/glad/src/glad.c.o"
 
 # External object files for target bbg
 bbg_EXTERNAL_OBJECTS =
 
 bbg: CMakeFiles/bbg.dir/bbg/main.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o
-bbg: CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/logger.cpp.o
+bbg: CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o
 bbg: CMakeFiles/bbg.dir/glad/src/glad.c.o
 bbg: CMakeFiles/bbg.dir/build.make
 bbg: /usr/lib/x86_64-linux-gnu/libGLX.so

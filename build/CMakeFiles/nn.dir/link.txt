@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -std=c++20 -fsanitize=address CMakeFiles/nn.dir/mynet/ser.cpp.o CMakeFiles/nn.dir/mylog/src/AsyncHelper.cpp.o CMakeFiles/nn.dir/mylog/src/FileAppender.cpp.o CMakeFiles/nn.dir/mylog/src/FileManager.cpp.o CMakeFiles/nn.dir/mylog/src/LogMessage.cpp.o CMakeFiles/nn.dir/mylog/src/Logger.cpp.o CMakeFiles/nn.dir/mylog/src/Timestamp.cpp.o -o nn

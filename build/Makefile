@@ -177,149 +177,149 @@ glad/src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/glad/src/glad.c.s
 .PHONY : glad/src/glad.c.s
 
-mylog/src/AsyncHelper.o: mylog/src/AsyncHelper.cpp.o
-.PHONY : mylog/src/AsyncHelper.o
+mylog/src/asyncHelper.o: mylog/src/asyncHelper.cpp.o
+.PHONY : mylog/src/asyncHelper.o
 
 # target to build an object file
-mylog/src/AsyncHelper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.o
-.PHONY : mylog/src/AsyncHelper.cpp.o
+mylog/src/asyncHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.o
+.PHONY : mylog/src/asyncHelper.cpp.o
 
-mylog/src/AsyncHelper.i: mylog/src/AsyncHelper.cpp.i
-.PHONY : mylog/src/AsyncHelper.i
+mylog/src/asyncHelper.i: mylog/src/asyncHelper.cpp.i
+.PHONY : mylog/src/asyncHelper.i
 
 # target to preprocess a source file
-mylog/src/AsyncHelper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.i
-.PHONY : mylog/src/AsyncHelper.cpp.i
+mylog/src/asyncHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.i
+.PHONY : mylog/src/asyncHelper.cpp.i
 
-mylog/src/AsyncHelper.s: mylog/src/AsyncHelper.cpp.s
-.PHONY : mylog/src/AsyncHelper.s
+mylog/src/asyncHelper.s: mylog/src/asyncHelper.cpp.s
+.PHONY : mylog/src/asyncHelper.s
 
 # target to generate assembly for a file
-mylog/src/AsyncHelper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/AsyncHelper.cpp.s
-.PHONY : mylog/src/AsyncHelper.cpp.s
+mylog/src/asyncHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/asyncHelper.cpp.s
+.PHONY : mylog/src/asyncHelper.cpp.s
 
-mylog/src/FileAppender.o: mylog/src/FileAppender.cpp.o
-.PHONY : mylog/src/FileAppender.o
+mylog/src/fileAppender.o: mylog/src/fileAppender.cpp.o
+.PHONY : mylog/src/fileAppender.o
 
 # target to build an object file
-mylog/src/FileAppender.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.o
-.PHONY : mylog/src/FileAppender.cpp.o
+mylog/src/fileAppender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.o
+.PHONY : mylog/src/fileAppender.cpp.o
 
-mylog/src/FileAppender.i: mylog/src/FileAppender.cpp.i
-.PHONY : mylog/src/FileAppender.i
+mylog/src/fileAppender.i: mylog/src/fileAppender.cpp.i
+.PHONY : mylog/src/fileAppender.i
 
 # target to preprocess a source file
-mylog/src/FileAppender.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.i
-.PHONY : mylog/src/FileAppender.cpp.i
+mylog/src/fileAppender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.i
+.PHONY : mylog/src/fileAppender.cpp.i
 
-mylog/src/FileAppender.s: mylog/src/FileAppender.cpp.s
-.PHONY : mylog/src/FileAppender.s
+mylog/src/fileAppender.s: mylog/src/fileAppender.cpp.s
+.PHONY : mylog/src/fileAppender.s
 
 # target to generate assembly for a file
-mylog/src/FileAppender.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileAppender.cpp.s
-.PHONY : mylog/src/FileAppender.cpp.s
+mylog/src/fileAppender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileAppender.cpp.s
+.PHONY : mylog/src/fileAppender.cpp.s
 
-mylog/src/FileManager.o: mylog/src/FileManager.cpp.o
-.PHONY : mylog/src/FileManager.o
+mylog/src/fileManager.o: mylog/src/fileManager.cpp.o
+.PHONY : mylog/src/fileManager.o
 
 # target to build an object file
-mylog/src/FileManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.o
-.PHONY : mylog/src/FileManager.cpp.o
+mylog/src/fileManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.o
+.PHONY : mylog/src/fileManager.cpp.o
 
-mylog/src/FileManager.i: mylog/src/FileManager.cpp.i
-.PHONY : mylog/src/FileManager.i
+mylog/src/fileManager.i: mylog/src/fileManager.cpp.i
+.PHONY : mylog/src/fileManager.i
 
 # target to preprocess a source file
-mylog/src/FileManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.i
-.PHONY : mylog/src/FileManager.cpp.i
+mylog/src/fileManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.i
+.PHONY : mylog/src/fileManager.cpp.i
 
-mylog/src/FileManager.s: mylog/src/FileManager.cpp.s
-.PHONY : mylog/src/FileManager.s
+mylog/src/fileManager.s: mylog/src/fileManager.cpp.s
+.PHONY : mylog/src/fileManager.s
 
 # target to generate assembly for a file
-mylog/src/FileManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/FileManager.cpp.s
-.PHONY : mylog/src/FileManager.cpp.s
+mylog/src/fileManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/fileManager.cpp.s
+.PHONY : mylog/src/fileManager.cpp.s
 
-mylog/src/LogMessage.o: mylog/src/LogMessage.cpp.o
-.PHONY : mylog/src/LogMessage.o
+mylog/src/logMessage.o: mylog/src/logMessage.cpp.o
+.PHONY : mylog/src/logMessage.o
 
 # target to build an object file
-mylog/src/LogMessage.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.o
-.PHONY : mylog/src/LogMessage.cpp.o
+mylog/src/logMessage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.o
+.PHONY : mylog/src/logMessage.cpp.o
 
-mylog/src/LogMessage.i: mylog/src/LogMessage.cpp.i
-.PHONY : mylog/src/LogMessage.i
+mylog/src/logMessage.i: mylog/src/logMessage.cpp.i
+.PHONY : mylog/src/logMessage.i
 
 # target to preprocess a source file
-mylog/src/LogMessage.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.i
-.PHONY : mylog/src/LogMessage.cpp.i
+mylog/src/logMessage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.i
+.PHONY : mylog/src/logMessage.cpp.i
 
-mylog/src/LogMessage.s: mylog/src/LogMessage.cpp.s
-.PHONY : mylog/src/LogMessage.s
+mylog/src/logMessage.s: mylog/src/logMessage.cpp.s
+.PHONY : mylog/src/logMessage.s
 
 # target to generate assembly for a file
-mylog/src/LogMessage.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/LogMessage.cpp.s
-.PHONY : mylog/src/LogMessage.cpp.s
+mylog/src/logMessage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logMessage.cpp.s
+.PHONY : mylog/src/logMessage.cpp.s
 
-mylog/src/Logger.o: mylog/src/Logger.cpp.o
-.PHONY : mylog/src/Logger.o
+mylog/src/logger.o: mylog/src/logger.cpp.o
+.PHONY : mylog/src/logger.o
 
 # target to build an object file
-mylog/src/Logger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.o
-.PHONY : mylog/src/Logger.cpp.o
+mylog/src/logger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logger.cpp.o
+.PHONY : mylog/src/logger.cpp.o
 
-mylog/src/Logger.i: mylog/src/Logger.cpp.i
-.PHONY : mylog/src/Logger.i
+mylog/src/logger.i: mylog/src/logger.cpp.i
+.PHONY : mylog/src/logger.i
 
 # target to preprocess a source file
-mylog/src/Logger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.i
-.PHONY : mylog/src/Logger.cpp.i
+mylog/src/logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logger.cpp.i
+.PHONY : mylog/src/logger.cpp.i
 
-mylog/src/Logger.s: mylog/src/Logger.cpp.s
-.PHONY : mylog/src/Logger.s
+mylog/src/logger.s: mylog/src/logger.cpp.s
+.PHONY : mylog/src/logger.s
 
 # target to generate assembly for a file
-mylog/src/Logger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Logger.cpp.s
-.PHONY : mylog/src/Logger.cpp.s
+mylog/src/logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/logger.cpp.s
+.PHONY : mylog/src/logger.cpp.s
 
-mylog/src/Timestamp.o: mylog/src/Timestamp.cpp.o
-.PHONY : mylog/src/Timestamp.o
+mylog/src/timestamp.o: mylog/src/timestamp.cpp.o
+.PHONY : mylog/src/timestamp.o
 
 # target to build an object file
-mylog/src/Timestamp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.o
-.PHONY : mylog/src/Timestamp.cpp.o
+mylog/src/timestamp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o
+.PHONY : mylog/src/timestamp.cpp.o
 
-mylog/src/Timestamp.i: mylog/src/Timestamp.cpp.i
-.PHONY : mylog/src/Timestamp.i
+mylog/src/timestamp.i: mylog/src/timestamp.cpp.i
+.PHONY : mylog/src/timestamp.i
 
 # target to preprocess a source file
-mylog/src/Timestamp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.i
-.PHONY : mylog/src/Timestamp.cpp.i
+mylog/src/timestamp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.i
+.PHONY : mylog/src/timestamp.cpp.i
 
-mylog/src/Timestamp.s: mylog/src/Timestamp.cpp.s
-.PHONY : mylog/src/Timestamp.s
+mylog/src/timestamp.s: mylog/src/timestamp.cpp.s
+.PHONY : mylog/src/timestamp.s
 
 # target to generate assembly for a file
-mylog/src/Timestamp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/Timestamp.cpp.s
-.PHONY : mylog/src/Timestamp.cpp.s
+mylog/src/timestamp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bbg.dir/build.make CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.s
+.PHONY : mylog/src/timestamp.cpp.s
 
 # Help Target
 help:
@@ -336,24 +336,24 @@ help:
 	@echo "... glad/src/glad.o"
 	@echo "... glad/src/glad.i"
 	@echo "... glad/src/glad.s"
-	@echo "... mylog/src/AsyncHelper.o"
-	@echo "... mylog/src/AsyncHelper.i"
-	@echo "... mylog/src/AsyncHelper.s"
-	@echo "... mylog/src/FileAppender.o"
-	@echo "... mylog/src/FileAppender.i"
-	@echo "... mylog/src/FileAppender.s"
-	@echo "... mylog/src/FileManager.o"
-	@echo "... mylog/src/FileManager.i"
-	@echo "... mylog/src/FileManager.s"
-	@echo "... mylog/src/LogMessage.o"
-	@echo "... mylog/src/LogMessage.i"
-	@echo "... mylog/src/LogMessage.s"
-	@echo "... mylog/src/Logger.o"
-	@echo "... mylog/src/Logger.i"
-	@echo "... mylog/src/Logger.s"
-	@echo "... mylog/src/Timestamp.o"
-	@echo "... mylog/src/Timestamp.i"
-	@echo "... mylog/src/Timestamp.s"
+	@echo "... mylog/src/asyncHelper.o"
+	@echo "... mylog/src/asyncHelper.i"
+	@echo "... mylog/src/asyncHelper.s"
+	@echo "... mylog/src/fileAppender.o"
+	@echo "... mylog/src/fileAppender.i"
+	@echo "... mylog/src/fileAppender.s"
+	@echo "... mylog/src/fileManager.o"
+	@echo "... mylog/src/fileManager.i"
+	@echo "... mylog/src/fileManager.s"
+	@echo "... mylog/src/logMessage.o"
+	@echo "... mylog/src/logMessage.i"
+	@echo "... mylog/src/logMessage.s"
+	@echo "... mylog/src/logger.o"
+	@echo "... mylog/src/logger.i"
+	@echo "... mylog/src/logger.s"
+	@echo "... mylog/src/timestamp.o"
+	@echo "... mylog/src/timestamp.i"
+	@echo "... mylog/src/timestamp.s"
 .PHONY : help
 
 

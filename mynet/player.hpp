@@ -45,7 +45,11 @@ public:
         ss << std::setw(4) << dist16(gen);
         uuid_v4_ = ss.str();
     }
-    ~Player() {}
+    ~Player() = default;
+    Player(const Player &) = delete;
+    Player &operator=(const Player &) = delete;
+    Player(Player &&) = delete;
+    Player &operator=(Player &&) = delete;
     std::string getUUIDv4() const
     {
         std::shared_lock<std::shared_mutex> locker(smtx_);

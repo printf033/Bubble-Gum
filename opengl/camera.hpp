@@ -15,9 +15,9 @@ class Camera
     glm::vec3 right_;
     float yaw_;
     float pitch_;
-    float movementSensitivity_;
-    float mouseSensitivity_;
-    float scollSensitivity_;
+    float moveSensitivity_;
+    float viewSensitivity_;
+    float zoomSensitivity_;
     float fovy_;
     float aspect_;
 
@@ -30,9 +30,9 @@ public:
           right_(glm::vec3(1.0f, 0.0f, 0.0f)),
           yaw_(-90.0f),
           pitch_(0.0f),
-          movementSensitivity_(3.0f),
-          mouseSensitivity_(0.15f),
-          scollSensitivity_(1.0f),
+          moveSensitivity_(5.0f),
+          viewSensitivity_(0.15f),
+          zoomSensitivity_(3.0f),
           fovy_(60.0f),
           aspect_(aspect) {}
     ~Camera() {}
@@ -45,9 +45,9 @@ public:
           right_(other.right_),
           yaw_(other.yaw_),
           pitch_(other.pitch_),
-          movementSensitivity_(other.movementSensitivity_),
-          mouseSensitivity_(other.mouseSensitivity_),
-          scollSensitivity_(other.scollSensitivity_),
+          moveSensitivity_(other.moveSensitivity_),
+          viewSensitivity_(other.viewSensitivity_),
+          zoomSensitivity_(other.zoomSensitivity_),
           fovy_(other.fovy_),
           aspect_(other.aspect_)
     {
@@ -74,7 +74,7 @@ public:
     }
     void processKeyboard_GodMode(Movement direction, float deltaTime)
     {
-        float rate = movementSensitivity_ * deltaTime;
+        float rate = moveSensitivity_ * deltaTime;
         switch (direction)
         {
         case Movement::FORWARD:
@@ -95,7 +95,7 @@ public:
     }
     void processKeyboard(Movement direction, float deltaTime)
     {
-        float rate = movementSensitivity_ * deltaTime;
+        float rate = moveSensitivity_ * deltaTime;
         glm::vec3 final(0.0f, 0.0f, 0.0f);
         switch (direction)
         {
@@ -125,8 +125,8 @@ public:
     }
     void processMouseMovement(float xoffset, float yoffset)
     {
-        yaw_ += xoffset * mouseSensitivity_;
-        pitch_ += yoffset * mouseSensitivity_;
+        yaw_ += xoffset * viewSensitivity_;
+        pitch_ += yoffset * viewSensitivity_;
         pitch_ = glm::clamp(pitch_, -89.9f, 89.9f);
         glm::vec3 front;
         front.x = cos(glm::radians(yaw_)) * cos(glm::radians(pitch_));
@@ -138,7 +138,7 @@ public:
     }
     void processMouseScroll(float yoffset)
     {
-        fovy_ -= yoffset * scollSensitivity_;
+        fovy_ -= yoffset * zoomSensitivity_;
         fovy_ = glm::clamp(fovy_, 1.0f, 179.0f);
     }
 
@@ -151,9 +151,9 @@ private:
         std::swap(right_, other.right_);
         std::swap(yaw_, other.yaw_);
         std::swap(pitch_, other.pitch_);
-        std::swap(movementSensitivity_, other.movementSensitivity_);
-        std::swap(mouseSensitivity_, other.mouseSensitivity_);
-        std::swap(scollSensitivity_, other.scollSensitivity_);
+        std::swap(moveSensitivity_, other.moveSensitivity_);
+        std::swap(viewSensitivity_, other.viewSensitivity_);
+        std::swap(zoomSensitivity_, other.zoomSensitivity_);
         std::swap(fovy_, other.fovy_);
         std::swap(aspect_, other.aspect_);
     }
