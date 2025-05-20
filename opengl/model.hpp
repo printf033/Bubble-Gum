@@ -81,6 +81,7 @@ public:
     inline std::filesystem::path getPath() const { return path_; }
     inline std::unordered_map<std::string, Hierarchy> &getBonesLoaded() { return bonesLoaded_; }
     inline Hierarchy *getRootHierarchy() const { return root_; }
+    inline std::vector<Mesh> &getMeshes() { return meshes_; }
     void draw(Shader &shader) const
     {
         for (auto &mesh : meshes_)
@@ -119,7 +120,7 @@ private:
         std::vector<Vertex> vertices = processVertices(paiMesh);
         std::vector<unsigned int> indices = processIndices(paiMesh);
         std::vector<Texture> textures = processTextures(paiMesh, paiScene);
-        return Mesh(vertices, indices, textures);
+        return Mesh(paiMesh->mName.C_Str(), vertices, indices, textures);
     }
     std::vector<Vertex> processVertices(aiMesh *paiMesh)
     {

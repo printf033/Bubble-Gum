@@ -451,16 +451,22 @@ CMakeFiles/bbg.dir/bbg/main.cpp.o: /home/aaa/code/myproj/Bubble-Gum/bbg/main.cpp
   /usr/include/glm/gtc/matrix_transform.inl \
   /usr/include/glm/gtc/quaternion.hpp \
   /usr/include/glm/gtc/quaternion.inl \
+  /usr/include/glm/gtx/closest_point.hpp \
+  /usr/include/glm/gtx/closest_point.inl \
   /usr/include/glm/gtx/compatibility.hpp \
   /usr/include/glm/gtx/compatibility.inl \
   /usr/include/glm/gtx/component_wise.hpp \
   /usr/include/glm/gtx/component_wise.inl \
   /usr/include/glm/gtx/euler_angles.hpp \
   /usr/include/glm/gtx/euler_angles.inl \
+  /usr/include/glm/gtx/intersect.hpp \
+  /usr/include/glm/gtx/intersect.inl \
   /usr/include/glm/gtx/norm.hpp \
   /usr/include/glm/gtx/norm.inl \
   /usr/include/glm/gtx/quaternion.hpp \
   /usr/include/glm/gtx/quaternion.inl \
+  /usr/include/glm/gtx/vector_query.hpp \
+  /usr/include/glm/gtx/vector_query.inl \
   /usr/include/glm/integer.hpp \
   /usr/include/glm/mat2x2.hpp \
   /usr/include/glm/mat2x3.hpp \
@@ -2316,6 +2322,16 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
 /usr/include/c++/14/pstl/execution_defs.h:
 
 /usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
@@ -2492,6 +2508,10 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/c++/14/bits/stl_vector.h:
 
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/assimp/matrix4x4.inl:
+
 /usr/include/c++/14/bits/basic_string.tcc:
 
 /usr/include/c++/14/bits/stl_tempbuf.h:
@@ -2501,6 +2521,8 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 /usr/include/c++/14/bits/range_access.h:
 
 /usr/include/glm/ext/vector_uint2.hpp:
+
+/usr/include/glm/gtx/intersect.inl:
 
 /usr/include/c++/14/bits/uses_allocator_args.h:
 
@@ -2529,8 +2551,6 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 /usr/include/c++/14/ext/concurrence.h:
 
 /home/aaa/code/myproj/Bubble-Gum/opengl/keyframe.hpp:
-
-/usr/include/features.h:
 
 /usr/include/c++/14/bits/memoryfwd.h:
 
@@ -2588,15 +2608,11 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/GLFW/glfw3.h:
 
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
 /usr/include/c++/14/bits/chrono.h:
 
 /usr/include/c++/14/bits/locale_facets.tcc:
 
 /usr/include/assimp/Importer.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/c++/14/bits/stl_construct.h:
 
@@ -2638,8 +2654,6 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/glm/detail/_vectorize.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
 /usr/include/assimp/Compiler/poppack1.h:
 
 /usr/include/glm/gtx/compatibility.hpp:
@@ -2666,11 +2680,11 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/c++/14/bits/exception_defines.h:
 
+/usr/include/glm/gtx/intersect.hpp:
+
 /usr/include/c++/14/bits/predefined_ops.h:
 
 /usr/include/assimp/mesh.h:
-
-/usr/include/glm/ext/vector_uint4.hpp:
 
 /usr/include/c++/14/bits/parse_numbers.h:
 
@@ -2897,6 +2911,10 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 /usr/include/c++/14/bits/basic_ios.tcc:
 
 /usr/include/c++/14/bits/charconv.h:
+
+/usr/include/features.h:
+
+/usr/include/glm/gtx/vector_query.inl:
 
 /usr/include/assimp/matrix4x4.h:
 
@@ -3278,6 +3296,8 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 
 /usr/include/glm/ext/quaternion_trigonometric.inl:
 
+/usr/include/glm/gtx/vector_query.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
 /usr/include/c++/14/concepts:
@@ -3363,6 +3383,12 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 /usr/include/glm/matrix.hpp:
 
 /usr/include/pthread.h:
+
+/usr/include/glm/gtx/closest_point.hpp:
+
+/usr/include/glm/ext/vector_uint4.hpp:
+
+/usr/include/glm/gtx/closest_point.inl:
 
 /usr/include/glm/gtx/compatibility.inl:
 
@@ -3495,11 +3521,3 @@ CMakeFiles/bbg.dir/mylog/src/timestamp.cpp.o: /home/aaa/code/myproj/Bubble-Gum/m
 /usr/include/c++/14/bits/hashtable.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/assimp/matrix4x4.inl:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
