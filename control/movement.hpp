@@ -6,7 +6,9 @@ enum class Movement
     FORWARD,
     BACKWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 };
 
-#endif 
+#endif

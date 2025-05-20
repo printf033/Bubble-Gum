@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr
+C_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/control -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr -I/home/aaa/code/myproj/Bubble-Gum/physics
 
 C_FLAGS = 
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr
+CXX_INCLUDES = -I/home/aaa/code/myproj/Bubble-Gum/glad/include -I/home/aaa/code/myproj/Bubble-Gum/mylog/inc -I/home/aaa/code/myproj/Bubble-Gum/opengl -I/home/aaa/code/myproj/Bubble-Gum/control -I/home/aaa/code/myproj/Bubble-Gum/mynet -I/home/aaa/code/myproj/Bubble-Gum/mythr -I/home/aaa/code/myproj/Bubble-Gum/physics
 
 CXX_FLAGS =  -g -std=c++20 
 

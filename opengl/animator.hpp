@@ -15,7 +15,8 @@ class Animator : public Model
     std::vector<glm::mat4> finalTransforms_;
     GLuint SSBO_;
     GLuint bindingIndex_;
-    static GLuint nextBindingPoint_;
+
+    static GLuint nextBindingPoint;
 
 public:
     Animator(const std::filesystem::path &path)
@@ -59,6 +60,16 @@ public:
         glDeleteBuffers(1, &SSBO_);
         curAnim_ = nullptr;
     }
+    void swap(Animator &other)
+    {
+        std::swap(animations_, other.animations_);
+        std::swap(curAnim_, other.curAnim_);
+        std::swap(curTick_, other.curTick_);
+        std::swap(finalTransforms_, other.finalTransforms_);
+        std::swap(SSBO_, other.SSBO_);
+        std::swap(bindingIndex_, other.bindingIndex_);
+        Model::swap(other);
+    }
     Animator(const Animator &) = delete;
     Animator &operator=(const Animator &) = delete;
     Animator(Animator &&other)
@@ -73,6 +84,7 @@ public:
         other.curAnim_ = nullptr;
         other.curTick_ = 0.0;
         other.SSBO_ = 0;
+        other.bindingIndex_ = 0;
     }
     Animator &operator=(Animator &&other)
     {
@@ -109,14 +121,6 @@ public:
     }
 
 private:
-    void swap(Animator &other)
-    {
-        std::swap(animations_, other.animations_);
-        std::swap(curAnim_, other.curAnim_);
-        std::swap(curTick_, other.curTick_);
-        std::swap(finalTransforms_, other.finalTransforms_);
-        std::swap(SSBO_, other.SSBO_);
-    }
     void readAnimations(const std::filesystem::path &path)
     {
         Assimp::Importer importer;
@@ -133,7 +137,10 @@ private:
             auto paiAnimation = paiScene->mAnimations[i];
             animations_.emplace(paiAnimation->mName.C_Str(), Animation(paiAnimation, *this));
             ///////////////////////////////////////////////////////////////
-            std::clog << paiAnimation->mName.C_Str() << std::endl; // 报菜名
+            curAnim_ = &animations_.at(paiAnimation->mName.C_Str());
+            std::clog << "Set animation: " << paiAnimation->mName.C_Str() // 报菜名
+                      << ", duration: " << curAnim_->getDuration()
+                      << ", ticks/s: " << curAnim_->getTicksPerSecond() << std::endl;
             ///////////////////////////////////////////////////////////////
         }
         finalTransforms_.resize(getBonesLoaded().size(), glm::mat4(1.0f));
@@ -143,7 +150,7 @@ private:
                      finalTransforms_.size() * sizeof(glm::mat4),
                      finalTransforms_.data(),
                      GL_DYNAMIC_DRAW);
-        bindingIndex_ = nextBindingPoint_++;
+        bindingIndex_ = nextBindingPoint++;
     }
     void calculateFinalTransform(const Hierarchy *node, glm::mat4 parentTransform)
     {
@@ -155,5 +162,5 @@ private:
             calculateFinalTransform(child, parentTransform);
     }
 };
-GLuint Animator::nextBindingPoint_ = 0;
+GLuint Animator::nextBindingPoint = 0;
 #endif

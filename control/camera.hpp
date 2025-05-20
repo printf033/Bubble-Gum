@@ -1,7 +1,7 @@
 #include <cmath>
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/euler_angles.hpp>
 #include "movement.hpp"
 
 #ifndef CAMERA_HPP
@@ -20,21 +20,28 @@ class Camera
     float zoomSensitivity_;
     float fovy_;
     float aspect_;
+    float height_;
+    float cursorX_;
+    float cursorY_;
 
 public:
-    // +X为右 +Y为上 -Z为前
-    Camera(float aspect, glm::vec3 position)
-        : position_(position),
-          front_(glm::vec3(0.0f, 0.0f, -1.0f)),
-          up_(glm::vec3(0.0f, 1.0f, 0.0f)),
-          right_(glm::vec3(1.0f, 0.0f, 0.0f)),
+    Camera(float aspect, float x, float y, float height)
+        : position_(x, height, y),
+          front_(0.0f, 0.0f, -1.0f),
+          up_(0.0f, 1.0f, 0.0f),
+          right_(1.0f, 0.0f, 0.0f),
           yaw_(-90.0f),
           pitch_(0.0f),
           moveSensitivity_(5.0f),
           viewSensitivity_(0.15f),
           zoomSensitivity_(3.0f),
           fovy_(60.0f),
-          aspect_(aspect) {}
+          aspect_(aspect),
+          height_(height),
+          cursorX_(0.0f),
+          cursorY_(0.0f)
+    {
+    }
     ~Camera() {}
     Camera(const Camera &) = delete;
     Camera &operator=(const Camera &) = delete;
@@ -49,7 +56,10 @@ public:
           viewSensitivity_(other.viewSensitivity_),
           zoomSensitivity_(other.zoomSensitivity_),
           fovy_(other.fovy_),
-          aspect_(other.aspect_)
+          aspect_(other.aspect_),
+          height_(other.height_),
+          cursorX_(other.cursorX_),
+          cursorY_(other.cursorY_)
     {
         other.position_ = glm::vec3(0.0f);
         other.front_ = glm::vec3(0.0f);
@@ -57,6 +67,14 @@ public:
         other.right_ = glm::vec3(0.0f);
         other.yaw_ = 0.0f;
         other.pitch_ = 0.0f;
+        other.moveSensitivity_ = 0.0f;
+        other.viewSensitivity_ = 0.0f;
+        other.zoomSensitivity_ = 0.0f;
+        other.fovy_ = 0.0f;
+        other.aspect_ = 0.0f;
+        other.height_ = 0.0f;
+        other.cursorX_ = 0.0f;
+        other.cursorY_ = 0.0f;
     }
     Camera &operator=(Camera &&other)
     {
@@ -72,7 +90,7 @@ public:
     {
         return glm::perspective(glm::radians(fovy_), aspect_, 0.1f, 100.0f);
     }
-    void processKeyboard_GodMode(Movement direction, float deltaTime)
+    void processPosMove_levitate(Movement direction, float deltaTime)
     {
         float rate = moveSensitivity_ * deltaTime;
         switch (direction)
@@ -89,11 +107,17 @@ public:
         case Movement::RIGHT:
             position_ += right_ * rate;
             break;
+        case Movement::UP:
+            position_ += up_ * rate;
+            break;
+        case Movement::DOWN:
+            position_ -= up_ * rate;
+            break;
         default:
             break;
         }
     }
-    void processKeyboard(Movement direction, float deltaTime)
+    void processPosMove(Movement direction, float deltaTime)
     {
         float rate = moveSensitivity_ * deltaTime;
         glm::vec3 final(0.0f, 0.0f, 0.0f);
@@ -119,12 +143,24 @@ public:
             final.z = right_.z;
             position_ += final * rate;
             break;
+        case Movement::UP:
+            final.y = 1.0f;
+            position_ += final * rate;
+            break;
+        case Movement::DOWN:
+            final.y = 1.0f;
+            position_ -= final * rate;
+            break;
         default:
             break;
         }
     }
-    void processMouseMovement(float xoffset, float yoffset)
+    void processViewMove(float xpos, float ypos)
     {
+        float xoffset = xpos - cursorX_;
+        float yoffset = cursorY_ - ypos;
+        cursorX_ = xpos;
+        cursorY_ = ypos;
         yaw_ += xoffset * viewSensitivity_;
         pitch_ += yoffset * viewSensitivity_;
         pitch_ = glm::clamp(pitch_, -89.9f, 89.9f);
@@ -136,10 +172,19 @@ public:
         right_ = glm::normalize(glm::cross(front_, glm::vec3(0.0f, 1.0f, 0.0f))); // def +Y up
         up_ = glm::normalize(glm::cross(right_, front_));
     }
-    void processMouseScroll(float yoffset)
+    void processViewZoom(float yoffset)
     {
         fovy_ -= yoffset * zoomSensitivity_;
-        fovy_ = glm::clamp(fovy_, 1.0f, 179.0f);
+        fovy_ = glm::clamp(fovy_, 10.0f, 120.0f);
+    }
+    glm::mat4 getGlobalTrans() const
+    {
+        // return glm::mat4(
+        //     glm::vec4(right_, 0.0f),
+        //     glm::vec4(up_, 0.0f),
+        //     glm::vec4(-front_, 0.0f),
+        //     glm::vec4(position_.x, position_.y - height_, position_.z, 1.0f));
+        return glm::translate(glm::mat4(1.0f), glm::vec3(position_.x, position_.y - height_, position_.z));
     }
 
 private:
@@ -156,6 +201,9 @@ private:
         std::swap(zoomSensitivity_, other.zoomSensitivity_);
         std::swap(fovy_, other.fovy_);
         std::swap(aspect_, other.aspect_);
+        std::swap(height_, other.height_);
+        std::swap(cursorX_, other.cursorX_);
+        std::swap(cursorY_, other.cursorY_);
     }
 };
 

@@ -53,6 +53,14 @@ public:
         for (auto &texture : texturesLoaded_)
             glDeleteTextures(1, &texture.id);
     }
+    void swap(Model &other)
+    {
+        std::swap(path_, other.path_);
+        std::swap(root_, other.root_);
+        std::swap(meshes_, other.meshes_);
+        std::swap(texturesLoaded_, other.texturesLoaded_);
+        std::swap(bonesLoaded_, other.bonesLoaded_);
+    }
     Model(const Model &) = delete;
     Model &operator=(const Model &) = delete;
     Model(Model &&other)
@@ -80,14 +88,6 @@ public:
     }
 
 private:
-    void swap(Model &other)
-    {
-        std::swap(path_, other.path_);
-        std::swap(root_, other.root_);
-        std::swap(meshes_, other.meshes_);
-        std::swap(texturesLoaded_, other.texturesLoaded_);
-        std::swap(bonesLoaded_, other.bonesLoaded_);
-    }
     void processNode(Hierarchy *&node, aiNode *paiNode, const aiScene *paiScene)
     {
         assert(paiNode != nullptr);

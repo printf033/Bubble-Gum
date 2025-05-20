@@ -105,8 +105,8 @@ public:
         }
         // //////////////////////////////////////////////////////////////////////////////////////////////////////
         // for (auto &it : vertices_)
-        //     std::cerr << "x" << it.position.x << "y" << it.position.y << "z" << it.position.z << "\n";
-        // std::cerr << "\n";
+        //     std::clog << "x" << it.position.x << "y" << it.position.y << "z" << it.position.z << "\n";
+        // std::clog << "\n";
         // //////////////////////////////////////////////////////////////////////////////////////////////////////
         glBindVertexArray(VAO_);
         glDrawElements(GL_TRIANGLES, static_cast<GLuint>(indices_.size()), GL_UNSIGNED_INT, 0);
