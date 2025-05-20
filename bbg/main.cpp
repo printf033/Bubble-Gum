@@ -102,6 +102,7 @@ int main()
                 ground.getCollider("sphere").processPosMove(Movement::UP, deltaTime);
             if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
                 ground.getCollider("sphere").processPosMove(Movement::DOWN, deltaTime);
+            ground.getCollider("sphere").setViewMove(Player::getInstance().getGlobalMat());
             staticShade(ground.getCollider("sphere"), ground.getCollider("sphere").getGlobalMat()); // test
             while (!npQue.empty_r())
             {

@@ -15,9 +15,9 @@
 #define REACTOR_HPP
 
 // SubReactor线程个数
-#define SUB_REACTOR_NUM 2
+#define SUB_REACTOR_NUM 1
 // 单一SubReactor最大事件数
-#define MAX_EVENTS_NUM 25
+#define MAX_EVENTS_NUM 32
 
 class Reactor : public Peer_ser // TCP Server
 {

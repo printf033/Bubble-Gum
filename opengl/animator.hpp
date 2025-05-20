@@ -62,13 +62,13 @@ public:
     }
     void swap(Animator &other)
     {
+        Model::swap(other);
         std::swap(animations_, other.animations_);
         std::swap(curAnim_, other.curAnim_);
         std::swap(curTick_, other.curTick_);
         std::swap(finalTransforms_, other.finalTransforms_);
         std::swap(SSBO_, other.SSBO_);
         std::swap(bindingIndex_, other.bindingIndex_);
-        Model::swap(other);
     }
     Animator(const Animator &) = delete;
     Animator &operator=(const Animator &) = delete;

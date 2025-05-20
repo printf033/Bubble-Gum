@@ -13,6 +13,10 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#define VIEW_POS_X 0.0f
+#define VIEW_POS_Y 0.0f
+#define VIEW_POS_HEIGHT 1.5f
+
 class Player : public Camera // 必须在主线程
 {
     // mutable std::shared_mutex smtx_;
@@ -20,8 +24,8 @@ class Player : public Camera // 必须在主线程
     bool isFocus_ = true;
 
 private:
-    Player(float aspect, float x, float y, float height)
-        : Camera(aspect, x, y, height), uuid_v4_(genUUIDv4()) {}
+    Player(float x, float y, float height)
+        : Camera(x, y, height), uuid_v4_(genUUIDv4()) {}
     ~Player() = default;
     Player(const Player &) = delete;
     Player &operator=(const Player &) = delete;
@@ -52,7 +56,7 @@ private:
 public:
     static Player &getInstance()
     {
-        static Player instance((16.0f / 9.0f), .0f, .0f, 1.7f); // 默认
+        static Player instance(VIEW_POS_X, VIEW_POS_Y, VIEW_POS_HEIGHT);
         return instance;
     }
     std::string getUUIDv4() const { return uuid_v4_; }

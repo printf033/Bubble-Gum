@@ -41,9 +41,12 @@ public:
             if (collider.second.isMoved())
             {
                 ///////////////////////////////////////////////////
-                std::clog << "Collider moved: " << collider.first;
+                std::clog << "x" << collider.second.getPosition().x
+                          << "y" << collider.second.getPosition().y
+                          << "z" << collider.second.getPosition().z
+                          << std::endl;
                 ///////////////////////////////////////////////////
-                
+
                 collider.second.clearMoved();
             }
         }

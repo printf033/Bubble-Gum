@@ -7,6 +7,12 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
+#define CAMERA_VIEW_ASPECT (16.0f / 9.0f)
+#define CAMERA_FIELD_OF_VIEW_VERTICAL 60.0f
+#define CAMERA_POS_MOVE_SENSITIVITY 5.0f
+#define CAMERA_VIEW_MOVE_SENSITIVITY 0.15f
+#define CAMERA_VIEW_ZOOM_SENSITIVITY 3.0f
+
 class Camera
 {
     glm::vec3 position_;
@@ -15,33 +21,29 @@ class Camera
     glm::vec3 right_;
     float yaw_;
     float pitch_;
+    float cursorX_;
+    float cursorY_;
     float moveSensitivity_;
     float viewSensitivity_;
     float zoomSensitivity_;
     float fovy_;
     float aspect_;
-    float height_;
-    float cursorX_;
-    float cursorY_;
 
 public:
-    Camera(float aspect, float x, float y, float height)
+    Camera(float x, float y, float height)
         : position_(x, height, y),
           front_(0.0f, 0.0f, -1.0f),
           up_(0.0f, 1.0f, 0.0f),
           right_(1.0f, 0.0f, 0.0f),
           yaw_(-90.0f),
           pitch_(0.0f),
-          moveSensitivity_(5.0f),
-          viewSensitivity_(0.15f),
-          zoomSensitivity_(3.0f),
-          fovy_(60.0f),
-          aspect_(aspect),
-          height_(height),
           cursorX_(0.0f),
-          cursorY_(0.0f)
-    {
-    }
+          cursorY_(0.0f),
+          moveSensitivity_(CAMERA_POS_MOVE_SENSITIVITY),
+          viewSensitivity_(CAMERA_VIEW_MOVE_SENSITIVITY),
+          zoomSensitivity_(CAMERA_VIEW_ZOOM_SENSITIVITY),
+          fovy_(CAMERA_FIELD_OF_VIEW_VERTICAL),
+          aspect_(CAMERA_VIEW_ASPECT) {}
     ~Camera() {}
     Camera(const Camera &) = delete;
     Camera &operator=(const Camera &) = delete;
@@ -52,14 +54,13 @@ public:
           right_(other.right_),
           yaw_(other.yaw_),
           pitch_(other.pitch_),
+          cursorX_(other.cursorX_),
+          cursorY_(other.cursorY_),
           moveSensitivity_(other.moveSensitivity_),
           viewSensitivity_(other.viewSensitivity_),
           zoomSensitivity_(other.zoomSensitivity_),
           fovy_(other.fovy_),
-          aspect_(other.aspect_),
-          height_(other.height_),
-          cursorX_(other.cursorX_),
-          cursorY_(other.cursorY_)
+          aspect_(other.aspect_)
     {
         other.position_ = glm::vec3(0.0f);
         other.front_ = glm::vec3(0.0f);
@@ -67,14 +68,13 @@ public:
         other.right_ = glm::vec3(0.0f);
         other.yaw_ = 0.0f;
         other.pitch_ = 0.0f;
+        other.cursorX_ = 0.0f;
+        other.cursorY_ = 0.0f;
         other.moveSensitivity_ = 0.0f;
         other.viewSensitivity_ = 0.0f;
         other.zoomSensitivity_ = 0.0f;
         other.fovy_ = 0.0f;
         other.aspect_ = 0.0f;
-        other.height_ = 0.0f;
-        other.cursorX_ = 0.0f;
-        other.cursorY_ = 0.0f;
     }
     Camera &operator=(Camera &&other)
     {
@@ -177,14 +177,13 @@ public:
         fovy_ -= yoffset * zoomSensitivity_;
         fovy_ = glm::clamp(fovy_, 10.0f, 120.0f);
     }
-    glm::mat4 getGlobalTrans() const
+    glm::mat4 getGlobalMat() const
     {
-        // return glm::mat4(
-        //     glm::vec4(right_, 0.0f),
-        //     glm::vec4(up_, 0.0f),
-        //     glm::vec4(-front_, 0.0f),
-        //     glm::vec4(position_.x, position_.y - height_, position_.z, 1.0f));
-        return glm::translate(glm::mat4(1.0f), glm::vec3(position_.x, position_.y - height_, position_.z));
+        return glm::mat4(
+            glm::vec4(right_, 0.0f),
+            glm::vec4(up_, 0.0f),
+            glm::vec4(front_, 0.0f),
+            glm::vec4(position_.x, position_.y, position_.z, 1.0f));
     }
 
 private:
@@ -196,14 +195,13 @@ private:
         std::swap(right_, other.right_);
         std::swap(yaw_, other.yaw_);
         std::swap(pitch_, other.pitch_);
+        std::swap(cursorX_, other.cursorX_);
+        std::swap(cursorY_, other.cursorY_);
         std::swap(moveSensitivity_, other.moveSensitivity_);
         std::swap(viewSensitivity_, other.viewSensitivity_);
         std::swap(zoomSensitivity_, other.zoomSensitivity_);
         std::swap(fovy_, other.fovy_);
         std::swap(aspect_, other.aspect_);
-        std::swap(height_, other.height_);
-        std::swap(cursorX_, other.cursorX_);
-        std::swap(cursorY_, other.cursorY_);
     }
 };
 
