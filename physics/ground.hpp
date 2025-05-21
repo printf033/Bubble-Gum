@@ -7,10 +7,13 @@
 #define GROUND_HPP
 
 // 默认第一个Mesh为地面！！！
+#define GRAVITY_ACCELERATION 9.8f
 
 class Ground : public Model
 {
     std::unordered_map<std::string, Collider> colliders_;
+    float half_g_ = GRAVITY_ACCELERATION * 0.5f;
+    float sumTime_ = -1.0f;
 
 public:
     Ground(const std::filesystem::path &path)
@@ -38,7 +41,7 @@ public:
     {
         return colliders_.at(name);
     }
-    void detectNcorrect()
+    void detectNcorrect(float deltaTime)
     {
         Mesh &groundMesh = getMeshes()[0]; // 默认第一个Mesh为地面！！！
         // 处理某个Collider与地面Mesh的碰撞
@@ -47,8 +50,8 @@ public:
             if (collider.second.isMoved())
             {
                 //////// octree later... ////////
-                //  处理飞天遁地
-                glm::vec3 gravity(0.0f, -1.0f, 0.0f);
+                //  重力模拟
+                glm::vec3 down(0.0f, -1.0f, 0.0f);
                 for (int i = 0; i < groundMesh.getIndices().size(); i += 3)
                 {
                     auto &v0 = groundMesh.getVertices()[groundMesh.getIndices()[i]];
@@ -57,20 +60,38 @@ public:
                     glm::vec2 intersection;
                     float distance = .0f;
                     if (glm::intersectRayTriangle(collider.second.getPosition(),
-                                                  gravity,
+                                                  down,
                                                   v0.position,
                                                   v1.position,
                                                   v2.position,
                                                   intersection,
-                                                  distance))
+                                                  distance) &&
+                        (distance > .01f || distance < -.01f))
                     {
-                        collider.second.getPosition().y -= distance;
+                        // ///////////////////////////////////////////////////////////
+                        // std::clog << collider.second.getPosition().y << std::endl;
+                        // ///////////////////////////////////////////////////////////
+                        if (-1.0f == sumTime_)
+                            sumTime_ = 0.0f;
+                        else
+                        { // d = 1/2 * g_ * ( t^2 - t0^2 )
+                            float t0_square = sumTime_ * sumTime_;
+                            sumTime_ += deltaTime;
+                            float t_square = sumTime_ * sumTime_;
+                            float d = half_g_ * (t_square - t0_square);
+                            collider.second.getPosition().y -= d;
+                            if (collider.second.getPosition().y < 0.01f)
+                            {
+                                sumTime_ = -1.0;
+                                collider.second.getPosition().y -= distance;
+                                collider.second.clearMoved();
+                            }
+                        }
                         break;
                     }
                 }
-                // 处理与地面Mesh的碰撞
+                // 处理与地面中其他Mesh的碰撞
                 /////////////////////////////////////////////////////////
-                collider.second.clearMoved();
             }
             // 处理Collider之间的碰撞
             /////////////////////////////////////////////////////////

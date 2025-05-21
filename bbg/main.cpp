@@ -66,7 +66,7 @@ int main()
             deltaTime = curTime - lastTime;
             lastTime = curTime;
             Player::getInstance().processKeyboard(window, deltaTime);
-            ground.detectNcorrect(); // detect collision and correct
+            ground.detectNcorrect(deltaTime); // detect collision and correct it
             glm::mat4 view = Player::getInstance().updateView();
             glm::mat4 projection = Player::getInstance().updateProjection();
             glClearColor(0.7f, 0.7f, 0.0f, 1.0f);
